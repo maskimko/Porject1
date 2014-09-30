@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <h:outputText value="Here is a list of server ip addresses"/>
+        <f:view>
+            <h:form>
+                <h:outputText value="Found #{getIpList.quantityOfAddresses} interfaces"/>
+                <h:dataTable value="#{getIpList.ipAddresses}" var="ipAddress" rows="2">
+                    <f:facet name="header">
+                        <h:outputText value="Ip Address"/>
+                    </f:facet>
+                    <h:column>
+                        <h:outputText value="#{ipAddress}"/>
+                    </h:column>
+                    
+                </h:dataTable>
+                <h:dataTable value="#{getIpList.routingTable}" var="route">
+                    <f:facet name="header">
+                        <h:outputText value="routes"/>
+                    </f:facet>
+                    <h:column>
+                        <h:outputText value="#{route}"/>
+                    </h:column>
+                </h:dataTable>
+                
+                
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
