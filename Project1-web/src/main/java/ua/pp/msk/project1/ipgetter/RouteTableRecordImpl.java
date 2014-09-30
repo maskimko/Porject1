@@ -22,7 +22,7 @@ public class RouteTableRecordImpl implements RouteTableRecord{
     private int uses;
     private int references;
     
-    
+    static final long serialVersionUID = 1L;
     
     @Override
     public Inet4Address getDestinationInetAddress() {

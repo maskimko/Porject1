@@ -19,6 +19,8 @@ public class ArpTableRecordImpl {
     private String mask;
     private String ifName;
     
+    static final long serialVersionUID = 1L;
+    
     public Inet4Address getInetAddress(){
         return ip;
     }

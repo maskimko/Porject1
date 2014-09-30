@@ -5,10 +5,17 @@
  */
 package ua.pp.msk.project1.ipgetter;
 
+import java.io.Serializable;
+import java.util.List;
+
+
+
 /**
  *
  * @author maskimko
  */
-public interface RouteTableInformation {
-    
+public interface RouteTableInformation extends Serializable{
+   
+    public List<RouteTableRecord> getRoutes();
+   
 }
