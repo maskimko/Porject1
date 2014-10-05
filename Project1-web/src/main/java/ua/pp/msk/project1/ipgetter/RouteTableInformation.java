@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface RouteTableInformation extends Serializable{
    
-    public List<RouteTableRecord> getRoutes();
+    public List<? extends RouteTableRecord> getRoutes();
    
 }

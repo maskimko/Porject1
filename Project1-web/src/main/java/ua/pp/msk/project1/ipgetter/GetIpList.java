@@ -57,18 +57,13 @@ public class GetIpList {
     
     public List<String> getRoutingTable(){
         List<String> routes = new ArrayList<String>();
-        try {
-            
-            Process exec = Runtime.getRuntime().exec("route -n");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(exec.getInputStream()));
-            String routeLine = null;
-            do {
-                routeLine = bufferedReader.readLine();
-                routes.add(routeLine);
-            } while (routeLine != null);
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(GetIpList.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       RouteTableInformation rti = new RouteTableInformationImpl();
+        List<? extends RouteTableRecord> routeRecords = rti.getRoutes();
+       for (RouteTableRecord rr : routeRecords){
+           StringBuilder sb = new StringBuilder(rr.getIfName());
+           sb.append(" ").append(rr.getDestinationInetAddress());
+           routes.add(sb.toString());
+       }
         return routes;
     }
     
