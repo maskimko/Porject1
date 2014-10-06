@@ -31,12 +31,12 @@ public class RouteTableInformationImplTest {
      */
     @Test
     public void testGetRouteRecordFromString() throws Exception {
+        
         System.out.println("getRouteRecordFromString");
         String line = "virbr0	007AA8C0	00000000	0001	0	0	0	00FFFFFF	0	0	0 ";
-       // Pattern routePattern = Pattern.compile("(\\w+\\d+)\\s+([0-9A-F]{8})\\s+([0-9A-F]{8})\\s+([0-9A-F]{4})\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+([0-9A-F]{8})\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)");
-         Pattern routePattern = Pattern.compile("^(\\w+\\d+)\\s+");
+         //Pattern routePattern = Pattern.compile("^(\\w+)\\s+");
+        Pattern routePattern = Pattern.compile(RouteTableInformationImpl.ROUTEPATTERNLINE);
         RouteTableInformationImpl instance = new RouteTableInformationImpl();
-        RouteTableLinuxRecord expResult = null;
         RouteTableLinuxRecord result = instance.getRouteRecordFromString(line, routePattern);
         assertNotNull(result);
         

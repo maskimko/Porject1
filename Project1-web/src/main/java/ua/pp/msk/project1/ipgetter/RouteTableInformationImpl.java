@@ -26,7 +26,7 @@ public class RouteTableInformationImpl implements RouteTableInformation {
 
     public static final String LINUXROUTE = "/proc/net/route";
     public static final String LINUXARP = "/proc/net/route";
-    public static final String ROUTEPATTERNLINE = "(\\w+\\d+)\\s+([0-9A-F]{8})\\s+([0-9A-F]{8})\\s+([0-9A-F]{4})\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+([0-9A-F]{8})\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)";
+    public static final String ROUTEPATTERNLINE = "^(\\w+)\\s+([0-9A-F]{8})\\s+([0-9A-F]{8})\\s+([0-9A-F]{4})\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+([0-9A-F]{8})\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s*";
 
     @Override
     public List<RouteTableLinuxRecord> getRoutes() {
