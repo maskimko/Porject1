@@ -40,9 +40,10 @@ public class RouteTableInformationImpl implements RouteTableInformation {
             String currentLine;
             if (route.canRead()) {
                 while ((currentLine = bf.readLine()) != null) {
-
-                   routes.add(getRouteRecordFromString(currentLine, routePattern));
-
+                    RouteTableLinuxRecord routeRecord = getRouteRecordFromString(currentLine, routePattern);
+                   if (routeRecord != null) {
+                       routes.add(routeRecord);
+                   }
                 }
 
             } else {

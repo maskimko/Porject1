@@ -6,11 +6,6 @@
 package ua.pp.msk.project1.ipgetter;
 
 import java.util.List;
-import java.util.regex.Pattern;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -162,5 +157,17 @@ public class RouteTableInformationImplTest {
 //    
 //    
 //    
+
+    /**
+     * Test of getRoutes method, of class RouteTableInformationImpl.
+     */
+    @Test
+    public void testGetRoutes() {
+        System.out.println("getRoutes");
+        RouteTableInformationImpl instance = new RouteTableInformationImpl();
+        List<RouteTableLinuxRecord> result = instance.getRoutes();
+        assertTrue(result.size() > 0);
+     
+    }
 
 }

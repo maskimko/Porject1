@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
 public class ArpTableInformationImpl implements ArpTableInformation{
 
     public static final String LINUXARP = "/proc/net/arp";
-    public static final String ARPPATTERNLINE = "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]))\\s+(0x\\d+)\\s+(0x\\d+)\\s+((\\w{2}:){5}\\w{2})\\s+([*\\w]+)\\s+(\\w+)";
+    public static final String ARPPATTERNLINE = "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]))\\s+(0x\\d+)\\s+(0x\\d+)\\s+((\\w{2}:){5}\\w{2})\\s+([*\\w]+)\\s+(\\w+)\\s*";
     
     @Override
     public List<ArpTableRecord> getArpTable() {
@@ -38,9 +38,10 @@ public class ArpTableInformationImpl implements ArpTableInformation{
             String currentLine;
             if (route.canRead()) {
                 while ((currentLine = bf.readLine()) != null) {
-
-                   arpRecords.add(getArpRecordFromString(currentLine, arpPattern));
-
+                    ArpTableRecord arpRecord = getArpRecordFromString(currentLine, arpPattern);
+                   if (arpRecord != null ){
+                       arpRecords.add(arpRecord);
+                   }
                 }
 
             } else {
@@ -63,11 +64,11 @@ public class ArpTableInformationImpl implements ArpTableInformation{
         if (arpMatcher.matches()) {
             arpRecord = new ArpTableRecordImpl();
             arpRecord.setInetAddress((Inet4Address) Inet4Address.getByName(arpMatcher.group(1)));
-            arpRecord.setHwType(Integer.decode(arpMatcher.group(2)));
-            arpRecord.setFlag(Integer.decode(arpMatcher.group(3)));
-            arpRecord.setHwAddress(getHwBytesFromString(arpMatcher.group(4)));
-            arpRecord.setMask(getMaskFromString(arpMatcher.group(5)));
-            arpRecord.setIfName(arpMatcher.group(6));
+            arpRecord.setHwType(Integer.decode(arpMatcher.group(6)));
+            arpRecord.setFlag(Integer.decode(arpMatcher.group(7)));
+            arpRecord.setHwAddress(getHwBytesFromString(arpMatcher.group(8)));
+            arpRecord.setMask(getMaskFromString(arpMatcher.group(10)));
+            arpRecord.setIfName(arpMatcher.group(11));
         }
         return arpRecord;
     }
@@ -79,7 +80,8 @@ public class ArpTableInformationImpl implements ArpTableInformation{
              throw new IllegalArgumentException("Error: wrong format of mac address " + mac);
          } else {
              for (int i=0; i < 6; i++){
-                 macBytes[i] = Byte.decode("0x"+macStrings[i]).byteValue();
+                 Integer hex = Integer.parseInt(macStrings[i], 16);
+                 macBytes[i] = hex.byteValue();
              }
          }
          return macBytes;
