@@ -66,7 +66,9 @@ public class RouteTableInformationImpl implements RouteTableInformation {
         return routes;
 
     }
-
+/*
+    In routing table ip addresses is in reverse order.
+    */
     private byte[] getByteArray(String input) throws IllegalArgumentException{
         byte[] byteArray = new byte[4];
         if (input.length() == 8) {
