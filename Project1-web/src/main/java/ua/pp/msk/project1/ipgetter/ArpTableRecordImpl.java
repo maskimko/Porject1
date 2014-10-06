@@ -11,12 +11,12 @@ import java.net.Inet4Address;
  *
  * @author maskimko
  */
-public class ArpTableRecordImpl {
+public class ArpTableRecordImpl implements ArpTableRecord{
     private Inet4Address ip;
-    private String hwType;
-    private String hwAddress;
-    private String flag;
-    private String mask;
+    private int hwType;
+    private byte[] hwAddress;
+    private int flag;
+    private byte[] mask;
     private String ifName;
     
     static final long serialVersionUID = 1L;
@@ -24,17 +24,17 @@ public class ArpTableRecordImpl {
     public Inet4Address getInetAddress(){
         return ip;
     }
-    public String   getHwType(){
+    public int   getHwType(){
         return hwType;
     }
-    public String getHwAddress(){
+    public byte[] getHwAddress(){
         return hwAddress;
     }
     
-    public String getFlag(){
+    public int getFlag(){
         return flag;
     }
-    public String getMask(){
+    public byte[] getMask(){
         return mask;
     }
     public String getIfName(){
@@ -44,16 +44,16 @@ public class ArpTableRecordImpl {
     public void setInetAddress(Inet4Address addr){
         this.ip = addr;
     }
-    public void setHwAddress(String hwAddress){
+    public void setHwAddress(byte[] hwAddress){
         this.hwAddress = hwAddress;
     }
-    public void setHwType(String hwType){
+    public void setHwType(int hwType){
         this.hwType = hwType;
     }
-    public void setFlag(String flag){
+    public void setFlag(int flag){
         this.flag = flag;
     }
-    public void setMask(String mask){
+    public void setMask(byte[] mask){
         this.mask = mask;
     }
     public void setIfName(String ifName){

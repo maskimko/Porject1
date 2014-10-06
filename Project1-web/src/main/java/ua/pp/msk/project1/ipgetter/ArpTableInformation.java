@@ -5,10 +5,13 @@
  */
 package ua.pp.msk.project1.ipgetter;
 
+import java.util.List;
+
 /**
  *
  * @author maskimko
  */
 public interface ArpTableInformation {
     
+    public List<ArpTableRecord> getArpTable();
 }

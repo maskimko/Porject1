@@ -14,16 +14,16 @@ import java.net.Inet4Address;
  */
 public interface ArpTableRecord extends Serializable {
     public Inet4Address getInetAddress();
-    public String   getHwType();
-    public String getHwAddress();
-    public String getFlag();
-    public String getMask();
+    public int   getHwType();
+    public byte[] getHwAddress();
+    public int getFlag();
+    public byte[] getMask();
     public String getIfName();
     
     public void setInetAddress(Inet4Address addr);
-    public void setHwAddress(String mac);
-    public void setHwType(String hwType);
-    public void setFlag(String flag);
-    public void setMask(String mask);
+    public void setHwAddress(byte[] mac);
+    public void setHwType(int hwType);
+    public void setFlag(int flag);
+    public void setMask(byte[] mask);
     public void setIfName(String ifName);
 }

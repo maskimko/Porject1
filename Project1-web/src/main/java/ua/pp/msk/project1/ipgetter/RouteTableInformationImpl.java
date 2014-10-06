@@ -61,7 +61,7 @@ public class RouteTableInformationImpl implements RouteTableInformation {
         return byteArray;
     }
 
-    public RouteTableLinuxRecord getRouteRecordFromString(String line, Pattern routePattern) throws UnknownHostException {
+    private RouteTableLinuxRecord getRouteRecordFromString(String line, Pattern routePattern) throws UnknownHostException {
         Matcher routeMatcher = routePattern.matcher(line);
         RouteTableLinuxRecord routeRecord = null;
         if (routeMatcher.matches()) {

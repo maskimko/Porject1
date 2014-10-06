@@ -5,19 +5,12 @@
  */
 package ua.pp.msk.project1.ipgetter;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.logging.Level;
 
 import javax.faces.bean.ManagedBean;
 import org.apache.log4j.Logger;
