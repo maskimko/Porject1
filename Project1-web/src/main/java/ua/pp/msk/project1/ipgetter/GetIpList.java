@@ -5,6 +5,7 @@
  */
 package ua.pp.msk.project1.ipgetter;
 
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -58,6 +59,27 @@ public class GetIpList {
            routes.add(sb.toString());
        }
         return routes;
+    }
+    
+    public Inet4Address getGatewayIp(){
+        RouteTableInformation rti =new RouteTableInformationImpl();
+        RouteTableRecord defaultRoute = rti.getDefaultRoute();
+        return defaultRoute.getGatewayInetAddress();
+    }
+    
+    public byte[] getGatewayMac(){
+        ArpTableInformation ati = new ArpTableInformationImpl();
+        ArpTableRecord arpRecordByIp = ati.getArpRecordByIp(getGatewayIp());
+        return arpRecordByIp.getHwAddress();
+    }
+    
+    public String getGatewayMacString(){
+        StringBuilder sb = new StringBuilder();
+        for (byte b : getGatewayMac()){
+            sb.append(Integer.toHexString((b < 0) ? b+128 : b));
+            
+        }
+        return sb.toString();
     }
     
 }

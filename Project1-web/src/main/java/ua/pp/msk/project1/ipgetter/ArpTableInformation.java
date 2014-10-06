@@ -5,6 +5,7 @@
  */
 package ua.pp.msk.project1.ipgetter;
 
+import java.net.Inet4Address;
 import java.util.List;
 
 /**
@@ -14,4 +15,5 @@ import java.util.List;
 public interface ArpTableInformation {
     
     public List<ArpTableRecord> getArpTable();
+    public ArpTableRecord getArpRecordByIp(Inet4Address ip);
 }

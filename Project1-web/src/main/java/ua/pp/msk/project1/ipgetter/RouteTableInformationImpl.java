@@ -13,6 +13,7 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.xml.bind.DatatypeConverter;
@@ -34,9 +35,10 @@ public class RouteTableInformationImpl implements RouteTableInformation {
         List<RouteTableLinuxRecord> routes = new ArrayList<RouteTableLinuxRecord>();
         Pattern routePattern = Pattern.compile(ROUTEPATTERNLINE);
         Matcher routeMatcher = null;
+        File route = new File(LINUXROUTE);
+        BufferedReader bf = null;
         try {
-            File route = new File(LINUXROUTE);
-            BufferedReader bf = new BufferedReader(new FileReader(route));
+            bf = new BufferedReader(new FileReader(route));
             String currentLine;
             if (route.canRead()) {
                 while ((currentLine = bf.readLine()) != null) {
@@ -52,13 +54,30 @@ public class RouteTableInformationImpl implements RouteTableInformation {
         } catch (IOException ex) {
             Logger.getLogger(GetIpList.class.getName()).error("Cannot get information from file " + LINUXROUTE);
         }
+        finally {
+            if (bf != null) {
+                try {
+                    bf.close();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(RouteTableInformationImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
         return routes;
 
     }
 
-    private byte[] getByteArray(String input) {
-        byte[] byteArray;
-        byteArray = DatatypeConverter.parseHexBinary(input);
+    private byte[] getByteArray(String input) throws IllegalArgumentException{
+        byte[] byteArray = new byte[4];
+        if (input.length() == 8) {
+            for (int i = 0; i < 4; i++){
+                String octet = input.substring(i * 2, (i+1) * 2 );
+                Integer hex  = Integer.parseInt(octet, 16);
+                byteArray[3-i] = hex.byteValue();
+        }
+        } else {
+            throw new IllegalArgumentException("IP address String representation must contain 8 chars.");
+        }
         return byteArray;
     }
 
@@ -80,6 +99,21 @@ public class RouteTableInformationImpl implements RouteTableInformation {
             routeRecord.serIrtt(Integer.parseInt(routeMatcher.group(11)));
         }
         return routeRecord;
+    }
+
+    @Override
+    public RouteTableRecord getDefaultRoute() {
+        List<RouteTableLinuxRecord> routes = getRoutes();
+        for (RouteTableRecord route : routes){
+            try {
+                if (route.getDestinationInetAddress().equals(Inet4Address.getByAddress(new byte[]{0,0,0,0}))){
+                    return route;
+                }
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(RouteTableInformationImpl.class.getName()).error("Error: cannot compare ip addresses. You should never see it!");
+            }
+        }
+        return null;
     }
 
 }

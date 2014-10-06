@@ -13,6 +13,7 @@ import java.net.Inet4Address;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.log4j.Logger;
@@ -32,11 +33,12 @@ public class ArpTableInformationImpl implements ArpTableInformation{
         List<ArpTableRecord> arpRecords = new ArrayList<ArpTableRecord>();
         Pattern arpPattern = Pattern.compile(ARPPATTERNLINE);
         Matcher arpMatcher = null;
+         File arp = new File(LINUXARP);
+            BufferedReader bf = null;
         try {
-            File route = new File(LINUXARP);
-            BufferedReader bf = new BufferedReader(new FileReader(route));
+            bf = new BufferedReader(new FileReader(arp));
             String currentLine;
-            if (route.canRead()) {
+            if (arp.canRead()) {
                 while ((currentLine = bf.readLine()) != null) {
                     ArpTableRecord arpRecord = getArpRecordFromString(currentLine, arpPattern);
                    if (arpRecord != null ){
@@ -51,6 +53,14 @@ public class ArpTableInformationImpl implements ArpTableInformation{
             Logger.getLogger(GetIpList.class.getName()).error("Cannot get information from file " + LINUXARP);
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).warn(ex.getMessage());
+        } finally {
+            if (bf != null){
+                try {
+                    bf.close();
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(ArpTableInformationImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         
         return arpRecords;
@@ -63,7 +73,8 @@ public class ArpTableInformationImpl implements ArpTableInformation{
         ArpTableRecord arpRecord = null;
         if (arpMatcher.matches()) {
             arpRecord = new ArpTableRecordImpl();
-            arpRecord.setInetAddress((Inet4Address) Inet4Address.getByName(arpMatcher.group(1)));
+            String ipString = arpMatcher.group(1);
+            arpRecord.setInetAddress((Inet4Address) Inet4Address.getByName(ipString));
             arpRecord.setHwType(Integer.decode(arpMatcher.group(6)));
             arpRecord.setFlag(Integer.decode(arpMatcher.group(7)));
             arpRecord.setHwAddress(getHwBytesFromString(arpMatcher.group(8)));
@@ -95,4 +106,16 @@ public class ArpTableInformationImpl implements ArpTableInformation{
              throw new IllegalStateException("Cannot process mask value " + mask + "\nYou should never see it!");
          }
      }
+
+    @Override
+    public ArpTableRecord getArpRecordByIp(Inet4Address ip) {
+        for (ArpTableRecord arp : getArpTable()){
+            String arpIp = arp.getInetAddress().toString();
+            String foreignIp = ip.toString();
+            if (arp.getInetAddress().equals(ip)) {
+                return arp;
+            }
+        }
+        return null;
+    }
 }
