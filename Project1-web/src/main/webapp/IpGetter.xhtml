@@ -19,7 +19,7 @@
                     <h:column>
                         <h:outputText value="#{ipAddress}"/>
                     </h:column>
-                    
+
                 </h:dataTable>
                 <h:dataTable value="#{getIpList.routingTable}" var="route">
                     <f:facet name="header">
@@ -32,6 +32,20 @@
                 <h:outputText value="Default gateway ip #{getIpList.gatewayIpString}"/>
                 <br/>
                 <h:outputText value="Gateway mac address #{getIpList.gatewayMacString}"/>
+                
+                <hr/>
+                <noscript>A browser with JavaScript enabled is required for this page to operate properly.</noscript>
+                <h2>Dynamic Tree Applet Demo</h2>
+                <h:panelGrid columns="2"> 
+                <applet
+        alt = "First applet"
+        code = "ua.pp.msk.learn.ejb.applet1.HelloWorld.class"
+        jnlp_href = "/Project1-web/faces/javax.faces.resource/first.jnlp?ln=jnlp"
+        width = "300"
+        height = "400" />
+                <h:graphicImage alt="Cannot load image" library="pictures" title="Maksym Shkolnyi" name="me_for_cv.jpg" height="400" />
+                </h:panelGrid>
+                <hr/>
             </h:form>
         </f:view>
 

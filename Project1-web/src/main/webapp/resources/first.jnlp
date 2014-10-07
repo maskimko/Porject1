@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="" href="">
+    <information>
+        <title>Project1</title>
+        <vendor>Maksym Shkolnyi</vendor>
+    </information>
+    <resources>
+        <!-- Application Resources -->
+        <j2se version="1.6+"
+         href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="Applet1-0.0-SNAPSHOT.jar" main="true"/>
+    </resources>
+    <application-desc name="My first applet" main-class="ua.pp.msk.learn.ejb.applet1.HelloWorld" width="300" height="400">
+        <!-- Application Arguments -->
+    </application-desc>
+    <update check="background"/>
+</jnlp>
+
