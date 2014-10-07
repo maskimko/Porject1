@@ -67,6 +67,10 @@ public class GetIpList {
         return defaultRoute.getGatewayInetAddress();
     }
     
+    public String getGatewayIpString(){
+        return getGatewayIp().toString().replaceFirst("/", "");
+    }
+    
     public byte[] getGatewayMac(){
         ArpTableInformation ati = new ArpTableInformationImpl();
         ArpTableRecord arpRecordByIp = ati.getArpRecordByIp(getGatewayIp());
@@ -75,9 +79,13 @@ public class GetIpList {
     
     public String getGatewayMacString(){
         StringBuilder sb = new StringBuilder();
-        for (byte b : getGatewayMac()){
-            sb.append(Integer.toHexString((b < 0) ? b+128 : b));
-            
+        int counter = 0;
+        for (int b : getGatewayMac()){
+            sb.append( String.format("%02X" , b & 0xff));
+            if (counter < 5) {
+                sb.append(":");
+            }
+            counter++;
         }
         return sb.toString();
     }
