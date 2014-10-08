@@ -5,6 +5,12 @@
  */
 package ua.pp.msk.project1.ipgetter;
 
+import ua.pp.msk.project1.lib.routelibrary.RouteTableInformationImpl;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableRecord;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableInformation;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableInformationImpl;
+import ua.pp.msk.project1.lib.routelibrary.RouteTableRecord;
+import ua.pp.msk.project1.lib.routelibrary.RouteTableInformation;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;

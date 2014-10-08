@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.pp.msk.project1.ipgetter;
+package ua.pp.msk.project1.lib.routelibrary;
 
+import ua.pp.msk.project1.lib.routelibrary.ArpTableInformationImpl;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableRecord;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;

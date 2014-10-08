@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.pp.msk.project1.ipgetter;
+package ua.pp.msk.project1.lib.routelibrary;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,10 +47,10 @@ public class ArpTableInformationImpl implements ArpTableInformation{
                 }
 
             } else {
-                Logger.getLogger(GetIpList.class.getName()).error("Cannot read file " + LINUXARP);
+                Logger.getLogger(this.getClass().getName()).error("Cannot read file " + LINUXARP);
             }
         } catch (IOException ex) {
-            Logger.getLogger(GetIpList.class.getName()).error("Cannot get information from file " + LINUXARP);
+            Logger.getLogger(this.getClass()).error("Cannot get information from file " + LINUXARP);
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).warn(ex.getMessage());
         } finally {

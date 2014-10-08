@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.pp.msk.project1.ipgetter;
+package ua.pp.msk.project1.lib.routelibrary;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -49,10 +49,10 @@ public class RouteTableInformationImpl implements RouteTableInformation {
                 }
 
             } else {
-                Logger.getLogger(GetIpList.class.getName()).error("Cannot read file " + LINUXROUTE);
+                Logger.getLogger(this.getClass()).error("Cannot read file " + LINUXROUTE);
             }
         } catch (IOException ex) {
-            Logger.getLogger(GetIpList.class.getName()).error("Cannot get information from file " + LINUXROUTE);
+            Logger.getLogger(this.getClass().getName()).error("Cannot get information from file " + LINUXROUTE);
         }
         finally {
             if (bf != null) {

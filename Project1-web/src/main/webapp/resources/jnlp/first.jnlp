@@ -9,6 +9,7 @@
         <java version="1.6+"
          href="http://java.sun.com/products/autodl/j2se"/>
         <jar href="Applet1-0.04.jar?ln=lib" main="true"/>
+        <jar href="RouteLibrary-0.0-SNAPSHOT.jar?ln=lib" main="false"/>
     </resources>
     
     <applet-desc name="Applet1" main-class="ua.pp.msk.project1.applet1.Applet1.class" width="300" height="400">
