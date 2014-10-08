@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="http://localhost:8080" href="/Project1-web/faces/javax.faces.resource/first.jnlp?ln=jnlp" 
-    version="0.0-SNAPSHOT">
+<jnlp spec="1.0+" codebase="" href="faces/javax.faces.resource/first.jnlp?ln=jnlp" 
+    version="0.04">
     <information >
         <title>Project1</title>
         <vendor>Maksym Shkolnyi</vendor>
     </information>
     <resources>
-        <!-- Application Resources -->
-        <j2se version="1.6+"
+        <java version="1.6+"
          href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="/Project1-web/faces/javax.faces.resource/Applet1-0.0-SNAPSHOT.jar?ln=jnlp" main="true"/>
+        <jar href="faces/javax.faces.resource/lib/Applet1-0.04.jar" main="true"/>
     </resources>
-    <application-desc name="My first applet" main-class="ua.pp.msk.learn.ejb.applet1.Main" width="300" height="400">
+    <application-desc name="Applet1" main-class="ua.pp.msk.project1.applet1.Applet1" width="300" height="400">
         <!-- Application Arguments -->
+        
     </application-desc>
+    <applet-desc name="Applet1" main-class="ua.pp.msk.project1.applet1.Applet1" width="300" height="400">
+        
+    </applet-desc>
     <update check="background"/>
 </jnlp>
 
