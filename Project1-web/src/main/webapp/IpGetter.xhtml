@@ -4,23 +4,14 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Arp and route information</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <h:outputText value="Here is a list of server ip addresses"/>
+        
+        <h:outputText value="Here is a list of routes"/>
         <f:view>
             <h:form>
-                <h:outputText value="Found #{getIpList.quantityOfAddresses} interfaces"/>
-                <h:dataTable value="#{getIpList.ipAddresses}" var="ipAddress" rows="2">
-                    <f:facet name="header">
-                        <h:outputText value="Ip Address"/>
-                    </f:facet>
-                    <h:column>
-                        <h:outputText value="#{ipAddress}"/>
-                    </h:column>
-
-                </h:dataTable>
+               
                 <h:dataTable value="#{getIpList.routingTable}" var="route">
                     <f:facet name="header">
                         <h:outputText value="routes"/>
@@ -39,10 +30,11 @@
                 <h:panelGrid columns="2"> 
                     <applet code = "ua.pp.msk.project1.applet1.Applet1"
                             jnlp_href = "faces/javax.faces.resource/jnlp/first.jnlp"
-                            width = "300"
-                            height = "400" >
+                            archive="Applet1-0.0.6.jar, RouteLibrary-0.0-SNAPSHOT.jar"
+                            codebase="./"
+                             >
                     </applet>
-                    <h:graphicImage alt="Cannot load image" library="pictures" title="Maksym Shkolnyi" name="me_for_cv.jpg" height="400" />
+                    <h:graphicImage alt="Cannot load image" library="pictures" title="Maksym Shkolnyi" name="me_for_cv.jpg" height="300" />
                 </h:panelGrid>
                 <hr/>
             </h:form>

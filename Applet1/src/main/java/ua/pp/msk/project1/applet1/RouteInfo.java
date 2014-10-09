@@ -9,7 +9,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Formatter;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -17,7 +17,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import sun.awt.im.InputMethodJFrame;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableInformation;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableInformationImpl;
+import ua.pp.msk.project1.lib.routelibrary.ArpTableRecord;
+import ua.pp.msk.project1.lib.routelibrary.Converter;
 import ua.pp.msk.project1.lib.routelibrary.RouteTableInformation;
 import ua.pp.msk.project1.lib.routelibrary.RouteTableInformationImpl;
 import ua.pp.msk.project1.lib.routelibrary.RouteTableRecord;
@@ -28,9 +31,10 @@ import ua.pp.msk.project1.lib.routelibrary.RouteTableRecord;
  */
 public class RouteInfo extends JPanel implements ActionListener {
 
-    private JTextArea routeArea;
-    private JTextField arpField;
-    private JTextField routeField;
+    private final JTextArea routeArea;
+    private final JTextField arpField;
+    private final JTextField routeField;
+    private final JTextArea arpArea;
 
     public RouteInfo() {
         super(new BorderLayout());
@@ -46,7 +50,7 @@ public class RouteInfo extends JPanel implements ActionListener {
         JLabel routeHeading = new JLabel("Routes");
         routeArea = new JTextArea();
         JLabel arpHeading = new JLabel("ARP");
-        JTextArea arpArea = new JTextArea();
+        arpArea = new JTextArea();
         topPanel.add(routeLabel);
         topPanel.add(routeField);
         topPanel.add(arpLabel);
@@ -68,9 +72,16 @@ public class RouteInfo extends JPanel implements ActionListener {
     }
     
 
-    public void appendLineToRouteArea(String someLine) {
-        routeArea.append(someLine + "\n");
-    }
+   public void addArp(ArpTableRecord atr){
+       String result = String.format("%1$-20s\t%2$-10s\t%3$-10s\t%4$-20s\t%5$-10s\t%6$-12s\n", 
+               atr.getInetAddress().toString().replaceFirst("/", ""),
+               atr.getHwType(),
+               atr.getFlag(),
+               Converter.macToString(atr.getHwAddress()),
+               Arrays.toString(atr.getMask()),
+               atr.getIfName());
+       arpArea.append(result);
+   }
 
     public void addRoute(RouteTableRecord rtr) {
         String result = String.format("%1$-20s\t%2$-20s\t%3$-20s\t%4$-12s\n", 
@@ -94,6 +105,13 @@ public class RouteInfo extends JPanel implements ActionListener {
         RouteInfo routeInfo = new RouteInfo();
         routeInfo.setOpaque(true);
 
+        ArpTableInformation ati = new ArpTableInformationImpl();
+        List<ArpTableRecord> arpTable = ati.getArpTable();
+        routeInfo.setArpNumber(arpTable.size());
+        for (ArpTableRecord atr: arpTable){
+            routeInfo.addArp(atr);
+        }
+        
         RouteTableInformation rti = new RouteTableInformationImpl();
         List<? extends RouteTableRecord> routes = rti.getRoutes();
         routeInfo.setRouteNumber(routes.size());

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.xml.bind.DatatypeConverter;
 import org.apache.log4j.Logger;
 
 /**
@@ -116,6 +115,11 @@ public class RouteTableInformationImpl implements RouteTableInformation {
             }
         }
         return null;
+    }
+
+    
+    public String macToString(byte[] mac) {
+     return Converter.macToString(mac);
     }
 
 }

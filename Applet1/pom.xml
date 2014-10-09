@@ -4,7 +4,7 @@
 
     <groupId>ua.pp.msk.learn.ejb</groupId>
     <artifactId>Applet1</artifactId>
-    <version>0.04</version>
+    <version>0.06</version>
     <packaging>jar</packaging>
 
     <name>Applet1</name>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>ua.pp.msk.project1.lib</groupId>
             <artifactId>RouteLibrary</artifactId>
-            <version>0.0-SNAPSHOT</version>
+            <version>0.01</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -69,7 +69,7 @@
                             <url>http://localhost:8080/Project1-web</url>
                             <Permissions>all-permissions</Permissions>
                             <Application-Name>${project.name}</Application-Name>
-                            <Codebase>http://localhost:8080</Codebase>
+                            <Codebase>http://localhost:8080/Project1-web/faces/javax.faces.resource</Codebase>
                             <AppletVersion>${project.version}</AppletVersion>
                         </manifestEntries>
                     </archive>

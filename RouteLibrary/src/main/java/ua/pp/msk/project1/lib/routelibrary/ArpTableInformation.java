@@ -16,4 +16,5 @@ public interface ArpTableInformation {
     
     public List<ArpTableRecord> getArpTable();
     public ArpTableRecord getArpRecordByIp(Inet4Address ip);
+   
 }

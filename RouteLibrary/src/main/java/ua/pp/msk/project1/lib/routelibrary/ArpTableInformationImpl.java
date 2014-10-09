@@ -118,4 +118,8 @@ public class ArpTableInformationImpl implements ArpTableInformation{
         }
         return null;
     }
+
+    public String macToString(byte[] mac) {
+         return Converter.macToString(mac);
+    }
 }
