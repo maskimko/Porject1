@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="http://localhost:8080/Project1-web/faces/javax.faces.resource" href="first.jnlp?ln=jnlp" 
+<jnlp spec="1.0+" codebase="http://localhost:8080/Project1-web/faces/javax.faces.resource" href="launchApplet.jnlp?ln=jnlp" 
     version="0.06">
     <information >
         <title>Project1</title>
@@ -8,8 +8,8 @@
     <resources>
         <java version="1.6+"
          href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="lib/Applet1-0.06.jar" main="true"/>
-        <jar href="lib/RouteLibrary-0.0-SNAPSHOT.jar" main="false"/>
+        <jar href="Applet1-0.06-jar-with-dependencies.jar?ln=lib" main="true"/>
+       
     </resources>
     
     <applet-desc name="Applet1" main-class="ua.pp.msk.project1.applet1.Applet1.class" width="500" height="300">

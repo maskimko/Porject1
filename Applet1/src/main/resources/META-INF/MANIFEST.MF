@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Permissions: sandbox
-Codebase: localhost:8080
-Application-Name: Project1

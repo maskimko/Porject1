@@ -2,35 +2,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ua.pp.msk.learn.ejb</groupId>
+    <groupId>ua.pp.msk.project1</groupId>
     <artifactId>Applet1</artifactId>
     <version>0.06</version>
     <packaging>jar</packaging>
 
     <name>Applet1</name>
 
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>ua.pp.msk.project1.lib</groupId>
-            <artifactId>RouteLibrary</artifactId>
-            <version>0.01</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
     <build>
-        
+    
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -40,68 +20,50 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-               
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.5</version>
-                  <configuration>
-                    <archive>
-                        <manifest>                            
-                            <mainClass>ua.pp.msk.project1.applet1.Applet1</mainClass>
-                        </manifest>
-                        <manifestEntries>
+        
+        <plugins>   
+   <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <index>true</index>
+                    <manifest>
+                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                         <mainClass>ua.pp.msk.project1.applet1.Applet1</mainClass>
+                    </manifest>
+                    <manifestEntries>
                             <mode>development</mode>
                             <url>http://localhost:8080/Project1-web</url>
                             <Permissions>all-permissions</Permissions>
                             <Application-Name>${project.name}</Application-Name>
-                            <Codebase>http://localhost:8080/Project1-web/faces/javax.faces.resource</Codebase>
+                            <Codebase>localhost</Codebase>
                             <AppletVersion>${project.version}</AppletVersion>
                         </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-           
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>6.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>independent</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
         </plugins>
     </build>
-
+    <dependencies>
+        <dependency>
+            <groupId>ua.pp.msk.project1.lib</groupId>
+            <artifactId>RouteLibrary</artifactId>
+            <version>0.01</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
