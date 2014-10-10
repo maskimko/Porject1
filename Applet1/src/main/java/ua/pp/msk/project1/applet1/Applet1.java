@@ -8,7 +8,6 @@ package ua.pp.msk.project1.applet1;
 import java.util.List;
 import javax.swing.JApplet;
 import javax.swing.SwingUtilities;
-import jdk.net.Sockets;
 import ua.pp.msk.project1.lib.routelibrary.ArpTableInformation;
 import ua.pp.msk.project1.lib.routelibrary.ArpTableInformationImpl;
 import ua.pp.msk.project1.lib.routelibrary.ArpTableRecord;
@@ -35,6 +34,7 @@ public class Applet1 extends JApplet {
                 @Override
                 public void run() {
                     createGui();
+//                    createSomePanelGui();
                 }
             });
         } catch (Exception ex) {
@@ -48,28 +48,19 @@ public class Applet1 extends JApplet {
     }
 
     public void createGui() {
-//        SomePanel sp = new SomePanel();
-//        sp.setOpaque(true);
-//        setContentPane(sp);
-//        setVisible(true);
+
         RouteInfo routeInfo = new RouteInfo();
         routeInfo.setOpaque(true);
-
-        ArpTableInformation ati = new ArpTableInformationImpl();
-        List<ArpTableRecord> arpTable = ati.getArpTable();
-        routeInfo.setArpNumber(arpTable.size());
-        for (ArpTableRecord atr : arpTable) {
-            routeInfo.addArp(atr);
-        }
-
-        RouteTableInformation rti = new RouteTableInformationImpl();
-        List<? extends RouteTableRecord> routes = rti.getRoutes();
-        routeInfo.setRouteNumber(routes.size());
-        for (RouteTableRecord rtr : routes) {
-            routeInfo.addRoute(rtr);
-        }
+        RouteInfo.fillTheContent(routeInfo);
         setContentPane(routeInfo);
         setVisible(true);
 
+    }
+    
+    private void createSomePanelGui(){
+        SomePanel sp = new SomePanel();
+        sp.setOpaque(true);
+        setContentPane(sp);
+        setVisible(true);
     }
 }
