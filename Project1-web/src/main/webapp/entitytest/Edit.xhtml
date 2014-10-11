@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EntitytestEditDlg" widgetVar="EntitytestEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEntitytestTitle}">
+            <h:form id="EntitytestEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{entitytestController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEntitytestLabel_userId}" for="userId" />
+                        <p:inputText id="userId" value="#{entitytestController.selected.userId}" title="#{bundle.EditEntitytestTitle_userId}" required="true" requiredMessage="#{bundle.EditEntitytestRequiredMessage_userId}"/>
+                        <p:outputLabel value="#{bundle.EditEntitytestLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{entitytestController.selected.login}" title="#{bundle.EditEntitytestTitle_login}" required="true" requiredMessage="#{bundle.EditEntitytestRequiredMessage_login}"/>
+                        <p:outputLabel value="#{bundle.EditEntitytestLabel_mail}" for="mail" />
+                        <p:inputText id="mail" value="#{entitytestController.selected.mail}" title="#{bundle.EditEntitytestTitle_mail}" required="true" requiredMessage="#{bundle.EditEntitytestRequiredMessage_mail}"/>
+                        <p:outputLabel value="#{bundle.EditEntitytestLabel_passwd}" for="passwd" />
+                        <p:inputText id="passwd" value="#{entitytestController.selected.passwd}" title="#{bundle.EditEntitytestTitle_passwd}" required="true" requiredMessage="#{bundle.EditEntitytestRequiredMessage_passwd}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{entitytestController.update}" value="#{bundle.Save}" update="display,:EntitytestListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EntitytestEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EntitytestEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

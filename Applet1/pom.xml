@@ -4,7 +4,7 @@
 
     <groupId>ua.pp.msk.project1</groupId>
     <artifactId>Applet1</artifactId>
-    <version>0.07</version>
+    <version>0.08</version>
     <packaging>jar</packaging>
 
     <name>Applet1</name>
@@ -37,10 +37,9 @@
                     </manifest>
                     <manifestEntries>
                             <mode>development</mode>
-                            <url>http://localhost:8080/Project1-web</url>
+                            <url>http://172.19.17.26:8080/Project1-web</url>
                             <Permissions>all-permissions</Permissions>
                             <Application-Name>${project.name}</Application-Name>
-                            <Codebase>localhost</Codebase>
                             <AppletVersion>${project.version}</AppletVersion>
                         </manifestEntries>
                 </archive>
@@ -69,11 +68,11 @@
           </execution>
         </executions>
         <configuration>
-          <keystore>/home/maskimko/NetBeansProjects/Project1/signing/applet_testKS</keystore>
-          <alias>atks</alias>
+          <keystore>/home/maskimko/JavaEE_Workspace/Project1/Applet1/signing/appletKeyStore</keystore>
+          <alias>applet</alias>
           <!--Passwords were substituted due to security reasons-->
-          <storepass>WeirdPass</storepass>
-          <keypass>@WeirdPass</keypass>
+          <storepass>Impression404right</storepass>
+          <keypass>Impression404right</keypass>
         </configuration>
       </plugin>
 

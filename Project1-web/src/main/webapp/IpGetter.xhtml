@@ -7,36 +7,24 @@
         <title>Arp and route information</title>
     </h:head>
     <h:body>
-        
-        <h:outputText value="Here is a list of routes"/>
+        <h6>
+        <h:outputText value="Here is a list of routes and arp records"/>
+        </h6>
         <f:view>
             <h:form>
                
-                <h:dataTable value="#{getIpList.routingTable}" var="route">
-                    <f:facet name="header">
-                        <h:outputText value="routes"/>
-                    </f:facet>
-                    <h:column>
-                        <h:outputText value="#{route}"/>
-                    </h:column>
-                </h:dataTable>
-                <h:outputText value="Default gateway ip #{getIpList.gatewayIpString}"/>
-                <br/>
-                <h:outputText value="Gateway mac address #{getIpList.gatewayMacString}"/>
-
-                <hr/>
-                <noscript>A browser with JavaScript enabled is required for this page to operate properly.</noscript>
-                <h2>Dynamic Tree Applet Demo</h2>
-                <h:panelGrid columns="2"> 
+             
+                <h6>Route analyzer applet</h6>
+               <hr/>
                     <applet code = "ua.pp.msk.project1.applet1.Applet1"
                             jnlp_href = "faces/javax.faces.resource/jnlp/launchApplet.jnlp"
-                            archive="Applet1-0.0.7-jar-with-dependencies.jar"
+                            archive="Applet1-0.0.8-jar-with-dependencies.jar"
                             height="300"
                             width="600"
                              >
                     </applet>
-                    <h:graphicImage alt="Cannot load image" library="pictures" title="Maksym Shkolnyi" name="me_for_cv.jpg" height="300" />
-                </h:panelGrid>
+                    
+                
                 <hr/>
             </h:form>
         </f:view>
