@@ -43,14 +43,8 @@
     <dependencies>
         <dependency>
             <groupId>ua.pp.msk.project1</groupId>
-            <artifactId>Project1-ejb</artifactId>
-            <version>0.01</version>
-            <type>ejb</type>
-        </dependency>
-        <dependency>
-            <groupId>ua.pp.msk.project1</groupId>
             <artifactId>Project1-web</artifactId>
-            <version>0.01</version>
+            <version>0.02</version>
             <type>war</type>
         </dependency>
     </dependencies>

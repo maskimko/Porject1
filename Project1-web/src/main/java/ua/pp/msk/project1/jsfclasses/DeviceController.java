@@ -1,9 +1,9 @@
 package ua.pp.msk.project1.jsfclasses;
 
-import ua.pp.msk.project1.ipgetter.Entitytest;
+import ua.pp.msk.project1.entities.Device;
 import ua.pp.msk.project1.jsfclasses.util.JsfUtil;
 import ua.pp.msk.project1.jsfclasses.util.JsfUtil.PersistAction;
-import ua.pp.msk.project1.sessionbeans.EntitytestFacade;
+import ua.pp.msk.project1.sessionbeans.DeviceFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,23 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-@ManagedBean(name = "entitytestController")
+@ManagedBean(name = "deviceController")
 @SessionScoped
-public class EntitytestController implements Serializable {
+public class DeviceController implements Serializable {
 
     @EJB
-    private ua.pp.msk.project1.sessionbeans.EntitytestFacade ejbFacade;
-    private List<Entitytest> items = null;
-    private Entitytest selected;
+    private ua.pp.msk.project1.sessionbeans.DeviceFacade ejbFacade;
+    private List<Device> items = null;
+    private Device selected;
 
-    public EntitytestController() {
+    public DeviceController() {
     }
 
-    public Entitytest getSelected() {
+    public Device getSelected() {
         return selected;
     }
 
-    public void setSelected(Entitytest selected) {
+    public void setSelected(Device selected) {
         this.selected = selected;
     }
 
@@ -45,36 +45,36 @@ public class EntitytestController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private EntitytestFacade getFacade() {
+    private DeviceFacade getFacade() {
         return ejbFacade;
     }
 
-    public Entitytest prepareCreate() {
-        selected = new Entitytest();
+    public Device prepareCreate() {
+        selected = new Device();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("EntitytestCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeviceCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("EntitytestUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeviceUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("EntitytestDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeviceDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Entitytest> getItems() {
+    public List<Device> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -109,34 +109,34 @@ public class EntitytestController implements Serializable {
         }
     }
 
-    public List<Entitytest> getItemsAvailableSelectMany() {
+    public List<Device> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Entitytest> getItemsAvailableSelectOne() {
+    public List<Device> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Entitytest.class)
-    public static class EntitytestControllerConverter implements Converter {
+    @FacesConverter(forClass = Device.class)
+    public static class DeviceControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EntitytestController controller = (EntitytestController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "entitytestController");
+            DeviceController controller = (DeviceController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "deviceController");
             return controller.getFacade().find(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        java.lang.Long getKey(String value) {
+            java.lang.Long key;
+            key = Long.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(java.lang.Long value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -147,11 +147,11 @@ public class EntitytestController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Entitytest) {
-                Entitytest o = (Entitytest) object;
-                return getStringKey(o.getUserId());
+            if (object instanceof Device) {
+                Device o = (Device) object;
+                return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Entitytest.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Device.class.getName()});
                 return null;
             }
         }

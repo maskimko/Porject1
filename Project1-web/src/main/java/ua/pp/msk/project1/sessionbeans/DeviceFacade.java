@@ -8,15 +8,15 @@ package ua.pp.msk.project1.sessionbeans;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import ua.pp.msk.project1.ipgetter.Entitytest;
+import ua.pp.msk.project1.entities.Device;
 
 /**
  *
  * @author maskimko
  */
 @Stateless
-public class EntitytestFacade extends AbstractFacade<Entitytest> {
-    @PersistenceContext(unitName = "ua.pp.msk.project1_Project1-web_war_0.01PU")
+public class DeviceFacade extends AbstractFacade<Device> {
+    @PersistenceContext(unitName = "project1_test")
     private EntityManager em;
 
     @Override
@@ -24,8 +24,8 @@ public class EntitytestFacade extends AbstractFacade<Entitytest> {
         return em;
     }
 
-    public EntitytestFacade() {
-        super(Entitytest.class);
+    public DeviceFacade() {
+        super(Device.class);
     }
     
 }

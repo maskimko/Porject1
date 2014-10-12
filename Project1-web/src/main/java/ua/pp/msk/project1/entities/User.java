@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ua.pp.msk.project1;
+package ua.pp.msk.project1.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,22 +25,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author maskimko
  */
-@Entity
-@Table(name = "entitytest")
+
+    @Entity
+@Table(name = "user_id")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Entitytest.findAll", query = "SELECT e FROM Entitytest e"),
-    @NamedQuery(name = "Entitytest.findByUserId", query = "SELECT e FROM Entitytest e WHERE e.userId = :userId"),
-    @NamedQuery(name = "Entitytest.findByLogin", query = "SELECT e FROM Entitytest e WHERE e.login = :login"),
-    @NamedQuery(name = "Entitytest.findByMail", query = "SELECT e FROM Entitytest e WHERE e.mail = :mail"),
-    @NamedQuery(name = "Entitytest.findByPasswd", query = "SELECT e FROM Entitytest e WHERE e.passwd = :passwd")})
-public class Entitytest implements Serializable {
+    @NamedQuery(name = "User.findAll", query = "SELECT e FROM User e"),
+    @NamedQuery(name = "User.findByUserId", query = "SELECT e FROM User e WHERE e.userId = :userId"),
+    @NamedQuery(name = "User.findByLogin", query = "SELECT e FROM User e WHERE e.login = :login"),
+    @NamedQuery(name = "User.findByMail", query = "SELECT e FROM User e WHERE e.mail = :mail")})
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "user_id")
-    private Integer userId;
+    private Long userId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
@@ -54,26 +56,50 @@ public class Entitytest implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "passwd")
     private String passwd;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "first_name")
+    private String firstName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min=1, max=35)
+    @Column(name="last_name")
+    private String surName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min=1, max=35)
+    @Column(name="middle_name")
+    private String middleName;
 
-    public Entitytest() {
+       @OneToMany(mappedBy = "owner")
+    private List<Device> devices;
+    
+    
+    
+    public User() {
     }
 
-    public Entitytest(Integer userId) {
+    public User(Long userId) {
         this.userId = userId;
     }
 
-    public Entitytest(Integer userId, String login, String mail, String passwd) {
+    public User(Long userId, String login, String mail, String passwd) {
         this.userId = userId;
         this.login = login;
         this.mail = mail;
         this.passwd = passwd;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -101,6 +127,32 @@ public class Entitytest implements Serializable {
         this.passwd = passwd;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSurName() {
+        return surName;
+    }
+
+    public void setSurName(String surName) {
+        this.surName = surName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -111,10 +163,10 @@ public class Entitytest implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Entitytest)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Entitytest other = (Entitytest) object;
+        User other = (User) object;
         if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
             return false;
         }
@@ -123,7 +175,10 @@ public class Entitytest implements Serializable {
 
     @Override
     public String toString() {
-        return "ua.pp.msk.project1.Entitytest[ userId=" + userId + " ]";
+        return "ua.pp.msk.project1.entities.User[ userId=" + userId + " login="
+                + login+ "]";
     }
     
 }
+
+

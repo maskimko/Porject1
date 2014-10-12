@@ -9,7 +9,6 @@
   <modules>
     <module>Project1-ear</module>
     <module>Project1-web</module>
-    <module>Project1-ejb</module>
     <module>Applet1</module>
     <module>RouteLibrary</module>
   </modules>

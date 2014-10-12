@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeviceCreateDlg" widgetVar="DeviceCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDeviceTitle}">
+            <h:form id="DeviceCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deviceController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDeviceLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{deviceController.selected.id}" title="#{bundle.CreateDeviceTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateDeviceLabel_model}" for="model" />
+                        <p:inputText id="model" value="#{deviceController.selected.model}" title="#{bundle.CreateDeviceTitle_model}" required="true" requiredMessage="#{bundle.CreateDeviceRequiredMessage_model}"/>
+                        <p:outputLabel value="#{bundle.CreateDeviceLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{deviceController.selected.description}" title="#{bundle.CreateDeviceTitle_description}" required="true" requiredMessage="#{bundle.CreateDeviceRequiredMessage_description}"/>
+                        <p:outputLabel value="#{bundle.CreateDeviceLabel_owner}" for="owner" />
+                        <p:selectOneMenu id="owner" value="#{deviceController.selected.owner}" >
+                            <f:selectItems value="#{userController.itemsAvailableSelectOne}"
+                                           var="ownerItem"
+                                           itemValue="#{ownerItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{deviceController.create}" value="#{bundle.Save}" update="display,:DeviceListForm:datalist,:growl" oncomplete="handleSubmit(args,'DeviceCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DeviceCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
