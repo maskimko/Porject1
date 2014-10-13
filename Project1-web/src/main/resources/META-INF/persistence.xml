@@ -8,7 +8,7 @@
     <properties>
       <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
       <property name="dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-      <property name="current_session_context_class">thread</property> 
+     
     </properties>
   </persistence-unit>
 </persistence>

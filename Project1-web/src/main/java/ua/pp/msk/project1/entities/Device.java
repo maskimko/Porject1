@@ -47,9 +47,12 @@ public class Device implements Serializable {
     @Column(name="description")
     private String description;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="owner_id")
     private User owner;
+    
+    @NotNull
+    private Long macAddr;
 
     public String getModel() {
         return model;
