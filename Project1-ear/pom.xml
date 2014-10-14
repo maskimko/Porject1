@@ -44,7 +44,7 @@
         <dependency>
             <groupId>ua.pp.msk.project1</groupId>
             <artifactId>Project1-web</artifactId>
-            <version>0.02</version>
+            <version>0.03</version>
             <type>war</type>
         </dependency>
     </dependencies>

@@ -78,6 +78,14 @@ public class User implements Serializable {
 
        @OneToMany(mappedBy = "owner")
     private List<Device> devices;
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
     
     
     

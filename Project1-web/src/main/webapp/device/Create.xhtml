@@ -24,6 +24,8 @@
                                            var="ownerItem"
                                            itemValue="#{ownerItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDeviceLabel_macAddr}" for="macAddr" />
+                        <p:inputText id="macAddr" value="#{deviceController.selected.macAddr}" title="#{bundle.CreateDeviceTitle_macAddr}" required="true" requiredMessage="#{bundle.CreateDeviceRequiredMessage_macAddr}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{deviceController.create}" value="#{bundle.Save}" update="display,:DeviceListForm:datalist,:growl" oncomplete="handleSubmit(args,'DeviceCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="DeviceCreateDialog.hide()"/>

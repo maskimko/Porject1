@@ -1,9 +1,9 @@
 package ua.pp.msk.project1.jsfclasses;
 
-import ua.pp.msk.project1.entities.Device;
+import ua.pp.msk.project1.entities.ApLocation;
 import ua.pp.msk.project1.jsfclasses.util.JsfUtil;
 import ua.pp.msk.project1.jsfclasses.util.JsfUtil.PersistAction;
-import ua.pp.msk.project1.sessionbeans.DeviceFacade;
+import ua.pp.msk.project1.sessionbeans.ApLocationFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -19,24 +19,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-
-@ManagedBean(name="deviceController")
+@ManagedBean(name = "apLocationController")
 @SessionScoped
-public class DeviceController implements Serializable {
+public class ApLocationController implements Serializable {
 
+    @EJB
+    private ua.pp.msk.project1.sessionbeans.ApLocationFacade ejbFacade;
+    private List<ApLocation> items = null;
+    private ApLocation selected;
 
-    @EJB private ua.pp.msk.project1.sessionbeans.DeviceFacade ejbFacade;
-    private List<Device> items = null;
-    private Device selected;
-
-    public DeviceController() {
+    public ApLocationController() {
     }
 
-    public Device getSelected() {
+    public ApLocation getSelected() {
         return selected;
     }
 
-    public void setSelected(Device selected) {
+    public void setSelected(ApLocation selected) {
         this.selected = selected;
     }
 
@@ -46,36 +45,36 @@ public class DeviceController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private DeviceFacade getFacade() {
+    private ApLocationFacade getFacade() {
         return ejbFacade;
     }
 
-    public Device prepareCreate() {
-        selected = new Device();
+    public ApLocation prepareCreate() {
+        selected = new ApLocation();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeviceCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ApLocationCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeviceUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("ApLocationUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeviceDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("ApLocationDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Device> getItems() {
+    public List<ApLocation> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -110,25 +109,24 @@ public class DeviceController implements Serializable {
         }
     }
 
-
-    public List<Device> getItemsAvailableSelectMany() {
+    public List<ApLocation> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Device> getItemsAvailableSelectOne() {
+    public List<ApLocation> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass=Device.class)
-    public static class DeviceControllerConverter implements Converter {
+    @FacesConverter(forClass = ApLocation.class)
+    public static class ApLocationControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeviceController controller = (DeviceController)facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "deviceController");
+            ApLocationController controller = (ApLocationController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "apLocationController");
             return controller.getFacade().find(getKey(value));
         }
 
@@ -149,11 +147,11 @@ public class DeviceController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Device) {
-                Device o = (Device) object;
+            if (object instanceof ApLocation) {
+                ApLocation o = (ApLocation) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Device.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), ApLocation.class.getName()});
                 return null;
             }
         }

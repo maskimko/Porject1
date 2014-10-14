@@ -20,6 +20,8 @@
                         <h:outputText value="#{deviceController.selected.description}" title="#{bundle.ViewDeviceTitle_description}"/>
                         <h:outputText value="#{bundle.ViewDeviceLabel_owner}"/>
                         <h:outputText value="#{deviceController.selected.owner}" title="#{bundle.ViewDeviceTitle_owner}"/>
+                        <h:outputText value="#{bundle.ViewDeviceLabel_macAddr}"/>
+                        <h:outputText value="#{deviceController.selected.macAddr}" title="#{bundle.ViewDeviceTitle_macAddr}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="DeviceViewDialog.hide()"/>
                 </h:panelGroup>

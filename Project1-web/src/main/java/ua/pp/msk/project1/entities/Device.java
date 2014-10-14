@@ -6,6 +6,7 @@
 package ua.pp.msk.project1.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,35 +28,41 @@ import javax.validation.constraints.Size;
  */
 @Entity
 public class Device implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    
     @Basic(optional = false)
     @NotNull
-    @Size(min=1, max=35)
-    @Column(name="model")
+    @Size(min = 1, max = 35)
+    @Column(name = "model")
     private String model;
-    
-    
+
     @Basic(optional = false)
     @NotNull
-    @Size(min=1, max=100)
-    @Column(name="description")
+    @Size(min = 1, max = 100)
+    @Column(name = "description")
     private String description;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="owner_id")
+    @JoinColumn(name = "owner_id")
     private User owner;
-    
+
+    @Basic(optional = false)
     @NotNull
+    @Min(0L)
+    @Max(value = 0xffffffffffffL)
+    @Column(name = "mac_address")
     private Long macAddr;
+    
+    @OneToMany(mappedBy = "device")
+    private List<DeviceLocation> locations;
 
     public String getModel() {
         return model;
@@ -77,12 +87,16 @@ public class Device implements Serializable {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-    
-    
-    
-    
-    
-    public void setId(Long id) {
+
+    public Long getMacAddr() {
+        return macAddr;
+    }
+
+    public void setMacAddr(Long macAddr) {
+        this.macAddr = macAddr;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -110,5 +124,5 @@ public class Device implements Serializable {
     public String toString() {
         return "ua.pp.msk.project1.entities.Device[ id=" + id + " ]";
     }
-    
+
 }

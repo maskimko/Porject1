@@ -25,6 +25,8 @@
                                            var="ownerItem"
                                            itemValue="#{ownerItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditDeviceLabel_macAddr}" for="macAddr" />
+                        <p:inputText id="macAddr" value="#{deviceController.selected.macAddr}" title="#{bundle.EditDeviceTitle_macAddr}" required="true" requiredMessage="#{bundle.EditDeviceRequiredMessage_macAddr}"/>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{deviceController.update}" value="#{bundle.Save}" update="display,:DeviceListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DeviceEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="DeviceEditDialog.hide()"/>

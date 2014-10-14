@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ApLocationViewDlg" widgetVar="ApLocationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewApLocationTitle}">
+            <h:form id="ApLocationViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{apLocationController.selected != null}">
+                        <h:outputText value="#{bundle.ViewApLocationLabel_id}"/>
+                        <h:outputText value="#{apLocationController.selected.id}" title="#{bundle.ViewApLocationTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_macaddr}"/>
+                        <h:outputText value="#{apLocationController.selected.macaddr}" title="#{bundle.ViewApLocationTitle_macaddr}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_ssid}"/>
+                        <h:outputText value="#{apLocationController.selected.ssid}" title="#{bundle.ViewApLocationTitle_ssid}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_latitude}"/>
+                        <h:outputText value="#{apLocationController.selected.latitude}" title="#{bundle.ViewApLocationTitle_latitude}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_longitude}"/>
+                        <h:outputText value="#{apLocationController.selected.longitude}" title="#{bundle.ViewApLocationTitle_longitude}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_accuracy}"/>
+                        <h:outputText value="#{apLocationController.selected.accuracy}" title="#{bundle.ViewApLocationTitle_accuracy}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_ipAddr}"/>
+                        <h:outputText value="#{apLocationController.selected.ipAddr}" title="#{bundle.ViewApLocationTitle_ipAddr}"/>
+                        <h:outputText value="#{bundle.ViewApLocationLabel_popularity}"/>
+                        <h:outputText value="#{apLocationController.selected.popularity}" title="#{bundle.ViewApLocationTitle_popularity}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ApLocationViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

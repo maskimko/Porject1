@@ -9,7 +9,7 @@
 
     <groupId>ua.pp.msk.project1</groupId>
     <artifactId>Project1-web</artifactId>
-    <version>0.02</version>
+    <version>0.03</version>
     <packaging>war</packaging>
 
     <name>Project1-web</name>

@@ -51,6 +51,12 @@
                             </f:facet>
                             <h:outputText value="#{item.owner}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceTitle_macAddr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.macAddr}"/>
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{deviceController.prepareCreate}" update=":DeviceCreateForm" oncomplete="PF('DeviceCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DeviceViewForm" oncomplete="PF('DeviceViewDialog').show()" disabled="#{empty deviceController.selected}"/>
