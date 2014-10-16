@@ -3,35 +3,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition>
-
-        <p:dialog id="DeviceLocationCreateDlg" widgetVar="DeviceLocationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDeviceLocationTitle}">
-            <h:form id="DeviceLocationCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{deviceLocationController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_id_deviceId}" for="id_deviceId" />
-                        <p:inputText id="id_deviceId" value="#{deviceLocationController.selected.id.deviceId}" title="#{bundle.CreateDeviceLocationTitle_id_deviceId}" />
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_id_timestamp}" for="id_timestamp" />
-                        <p:inputText id="id_timestamp" value="#{deviceLocationController.selected.id.timestamp}" title="#{bundle.CreateDeviceLocationTitle_id_timestamp}" />
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_deviceId}" for="deviceId" />
-                        <p:inputText id="deviceId" value="#{deviceLocationController.selected.deviceId}" title="#{bundle.CreateDeviceLocationTitle_deviceId}" />
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_timestamp}" for="timestamp" />
-                        <p:inputText id="timestamp" value="#{deviceLocationController.selected.timestamp}" title="#{bundle.CreateDeviceLocationTitle_timestamp}" />
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_latitude}" for="latitude" />
-                        <p:inputText id="latitude" value="#{deviceLocationController.selected.latitude}" title="#{bundle.CreateDeviceLocationTitle_latitude}" />
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_longitude}" for="longitude" />
-                        <p:inputText id="longitude" value="#{deviceLocationController.selected.longitude}" title="#{bundle.CreateDeviceLocationTitle_longitude}" />
-                        <p:outputLabel value="#{bundle.CreateDeviceLocationLabel_accuracy}" for="accuracy" />
-                        <p:inputText id="accuracy" value="#{deviceLocationController.selected.accuracy}" title="#{bundle.CreateDeviceLocationTitle_accuracy}" />
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{deviceLocationController.create}" value="#{bundle.Save}" update="display,:DeviceLocationListForm:datalist,:growl" oncomplete="handleSubmit(args,'DeviceLocationCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="DeviceLocationCreateDialog.hide()"/>
-                </h:panelGroup>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateDeviceLocationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_id_timestamp}" for="id_timestamp" />
+                    <h:inputText id="id_timestamp" value="#{deviceLocationController.selected.id.timestamp}" title="#{bundle.CreateDeviceLocationTitle_id_timestamp}" />
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_id_deviceId}" for="id_deviceId" />
+                    <h:inputText id="id_deviceId" value="#{deviceLocationController.selected.id.deviceId}" title="#{bundle.CreateDeviceLocationTitle_id_deviceId}" />
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_deviceId}" for="deviceId" />
+                    <h:inputText id="deviceId" value="#{deviceLocationController.selected.deviceId}" title="#{bundle.CreateDeviceLocationTitle_deviceId}" />
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_timestamp}" for="timestamp" />
+                    <h:inputText id="timestamp" value="#{deviceLocationController.selected.timestamp}" title="#{bundle.CreateDeviceLocationTitle_timestamp}" />
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_latitude}" for="latitude" />
+                    <h:inputText id="latitude" value="#{deviceLocationController.selected.latitude}" title="#{bundle.CreateDeviceLocationTitle_latitude}" />
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_longitude}" for="longitude" />
+                    <h:inputText id="longitude" value="#{deviceLocationController.selected.longitude}" title="#{bundle.CreateDeviceLocationTitle_longitude}" />
+                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_accuracy}" for="accuracy" />
+                    <h:inputText id="accuracy" value="#{deviceLocationController.selected.accuracy}" title="#{bundle.CreateDeviceLocationTitle_accuracy}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{deviceLocationController.create}" value="#{bundle.CreateDeviceLocationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{deviceLocationController.prepareList}" value="#{bundle.CreateDeviceLocationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateDeviceLocationIndexLink}"/>
             </h:form>
-        </p:dialog>
-
+        </ui:define>
     </ui:composition>
+
 </html>

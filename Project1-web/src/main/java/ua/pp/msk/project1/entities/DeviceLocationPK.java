@@ -6,7 +6,8 @@
 package ua.pp.msk.project1.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

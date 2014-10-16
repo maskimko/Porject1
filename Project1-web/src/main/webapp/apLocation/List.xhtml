@@ -3,91 +3,89 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:composition template="/template.xhtml">
-
-
         <ui:define name="title">
             <h:outputText value="#{bundle.ListApLocationTitle}"></h:outputText>
         </ui:define>
-
         <ui:define name="body">
-            <h:form id="ApLocationListForm">
-                <p:panel header="#{bundle.ListApLocationTitle}">
-                    <p:dataTable id="datalist" value="#{apLocationController.items}" var="item"
-                                 selectionMode="single" selection="#{apLocationController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.id}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 >
-
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_id}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_macaddr}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.macaddr}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_ssid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ssid}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_latitude}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.latitude}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_longitude}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.longitude}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_accuracy}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.accuracy}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_ipAddr}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ipAddr}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListApLocationTitle_popularity}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.popularity}"/>
-                        </p:column>
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{apLocationController.prepareCreate}" update=":ApLocationCreateForm" oncomplete="PF('ApLocationCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ApLocationViewForm" oncomplete="PF('ApLocationViewDialog').show()" disabled="#{empty apLocationController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ApLocationEditForm" oncomplete="PF('ApLocationEditDialog').show()" disabled="#{empty apLocationController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{apLocationController.destroy}" update=":growl,datalist" disabled="#{empty apLocationController.selected}"/>
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListApLocationEmpty}" rendered="#{apLocationController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{apLocationController.items.rowCount > 0}">
+                <h:outputText value="#{apLocationController.pagination.pageFirstItem + 1}..#{apLocationController.pagination.pageLastItem + 1}/#{apLocationController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{apLocationController.previous}" value="#{bundle.Previous} #{apLocationController.pagination.pageSize}" rendered="#{apLocationController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{apLocationController.next}" value="#{bundle.Next} #{apLocationController.pagination.pageSize}" rendered="#{apLocationController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{apLocationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_id}"/>
                         </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
-
-            <ui:include src="Create.xhtml"/>
-            <ui:include src="Edit.xhtml"/>
-            <ui:include src="View.xhtml"/>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_macaddr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.macaddr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_ssid}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ssid}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_latitude}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.latitude}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_longitude}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.longitude}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_accuracy}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.accuracy}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_ipAddr}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ipAddr}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListApLocationTitle_popularity}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.popularity}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{apLocationController.prepareView}" value="#{bundle.ListApLocationViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{apLocationController.prepareEdit}" value="#{bundle.ListApLocationEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{apLocationController.destroy}" value="#{bundle.ListApLocationDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{apLocationController.prepareCreate}" value="#{bundle.ListApLocationCreateLink}"/>
+            <br />
+            <br />
+            <h:link outcome="/index" value="#{bundle.ListApLocationIndexLink}"/>
+        </h:form>
         </ui:define>
     </ui:composition>
 

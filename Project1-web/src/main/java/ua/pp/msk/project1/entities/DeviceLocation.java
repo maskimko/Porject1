@@ -6,19 +6,16 @@
 package ua.pp.msk.project1.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  *
@@ -55,7 +52,7 @@ public class DeviceLocation implements Serializable {
         return getId().getDeviceId();
     }
     
-    public java.sql.Date getTimestamp(){
+    public Date getTimestamp(){
         return getId().getTimestamp();
     }
 

@@ -3,34 +3,48 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDeviceLocationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_id_timestamp}"/>
+                    <h:outputText value="#{deviceLocationController.selected.id.timestamp}" title="#{bundle.ViewDeviceLocationTitle_id_timestamp}"/>
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_id_deviceId}"/>
+                    <h:outputText value="#{deviceLocationController.selected.id.deviceId}" title="#{bundle.ViewDeviceLocationTitle_id_deviceId}"/>
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_deviceId}"/>
+                    <h:outputText value="#{deviceLocationController.selected.deviceId}" title="#{bundle.ViewDeviceLocationTitle_deviceId}"/>
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_timestamp}"/>
+                    <h:outputText value="#{deviceLocationController.selected.timestamp}" title="#{bundle.ViewDeviceLocationTitle_timestamp}"/>
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_latitude}"/>
+                    <h:outputText value="#{deviceLocationController.selected.latitude}" title="#{bundle.ViewDeviceLocationTitle_latitude}"/>
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_longitude}"/>
+                    <h:outputText value="#{deviceLocationController.selected.longitude}" title="#{bundle.ViewDeviceLocationTitle_longitude}"/>
+                    <h:outputText value="#{bundle.ViewDeviceLocationLabel_accuracy}"/>
+                    <h:outputText value="#{deviceLocationController.selected.accuracy}" title="#{bundle.ViewDeviceLocationTitle_accuracy}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{deviceLocationController.destroyAndView}" value="#{bundle.ViewDeviceLocationDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDeviceLocationEditLink}"/>
+                <br />
+                <h:commandLink action="#{deviceLocationController.prepareCreate}" value="#{bundle.ViewDeviceLocationCreateLink}" />
+                <br />
+                <h:commandLink action="#{deviceLocationController.prepareList}" value="#{bundle.ViewDeviceLocationShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDeviceLocationIndexLink}"/>
 
-        <p:dialog id="DeviceLocationViewDlg" widgetVar="DeviceLocationViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDeviceLocationTitle}">
-            <h:form id="DeviceLocationViewForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{deviceLocationController.selected != null}">
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_id_deviceId}"/>
-                        <h:outputText value="#{deviceLocationController.selected.id.deviceId}" title="#{bundle.ViewDeviceLocationTitle_id_deviceId}"/>
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_id_timestamp}"/>
-                        <h:outputText value="#{deviceLocationController.selected.id.timestamp}" title="#{bundle.ViewDeviceLocationTitle_id_timestamp}"/>
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_deviceId}"/>
-                        <h:outputText value="#{deviceLocationController.selected.deviceId}" title="#{bundle.ViewDeviceLocationTitle_deviceId}"/>
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_timestamp}"/>
-                        <h:outputText value="#{deviceLocationController.selected.timestamp}" title="#{bundle.ViewDeviceLocationTitle_timestamp}"/>
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_latitude}"/>
-                        <h:outputText value="#{deviceLocationController.selected.latitude}" title="#{bundle.ViewDeviceLocationTitle_latitude}"/>
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_longitude}"/>
-                        <h:outputText value="#{deviceLocationController.selected.longitude}" title="#{bundle.ViewDeviceLocationTitle_longitude}"/>
-                        <h:outputText value="#{bundle.ViewDeviceLocationLabel_accuracy}"/>
-                        <h:outputText value="#{deviceLocationController.selected.accuracy}" title="#{bundle.ViewDeviceLocationTitle_accuracy}"/>
-                    </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="DeviceLocationViewDialog.hide()"/>
-                </h:panelGroup>
             </h:form>
-        </p:dialog>
-
+        </ui:define>
     </ui:composition>
+
 </html>

@@ -66,7 +66,7 @@ public class ApLocation implements Serializable {
     @Basic
     @Column(name = "popularity")
     private Integer popularity;
-    @OneToMany(mappedBy = "apId")
+    @OneToMany(mappedBy = "apLocation")
     private List<ApInterface> interfaces;
 
     public Integer getId() {

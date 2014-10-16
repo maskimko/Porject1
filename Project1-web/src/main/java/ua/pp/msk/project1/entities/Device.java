@@ -32,6 +32,7 @@ public class Device implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "device_id")
     private Integer id;
 
     public Integer getId() {

@@ -3,37 +3,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition>
-
-        <p:dialog id="ApLocationCreateDlg" widgetVar="ApLocationCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateApLocationTitle}">
-            <h:form id="ApLocationCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{apLocationController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{apLocationController.selected.id}" title="#{bundle.CreateApLocationTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_macaddr}" for="macaddr" />
-                        <p:inputText id="macaddr" value="#{apLocationController.selected.macaddr}" title="#{bundle.CreateApLocationTitle_macaddr}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_macaddr}"/>
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_ssid}" for="ssid" />
-                        <p:inputText id="ssid" value="#{apLocationController.selected.ssid}" title="#{bundle.CreateApLocationTitle_ssid}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_ssid}"/>
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_latitude}" for="latitude" />
-                        <p:inputText id="latitude" value="#{apLocationController.selected.latitude}" title="#{bundle.CreateApLocationTitle_latitude}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_latitude}"/>
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_longitude}" for="longitude" />
-                        <p:inputText id="longitude" value="#{apLocationController.selected.longitude}" title="#{bundle.CreateApLocationTitle_longitude}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_longitude}"/>
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_accuracy}" for="accuracy" />
-                        <p:inputText id="accuracy" value="#{apLocationController.selected.accuracy}" title="#{bundle.CreateApLocationTitle_accuracy}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_accuracy}"/>
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_ipAddr}" for="ipAddr" />
-                        <p:inputText id="ipAddr" value="#{apLocationController.selected.ipAddr}" title="#{bundle.CreateApLocationTitle_ipAddr}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_ipAddr}"/>
-                        <p:outputLabel value="#{bundle.CreateApLocationLabel_popularity}" for="popularity" />
-                        <p:inputText id="popularity" value="#{apLocationController.selected.popularity}" title="#{bundle.CreateApLocationTitle_popularity}" />
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{apLocationController.create}" value="#{bundle.Save}" update="display,:ApLocationListForm:datalist,:growl" oncomplete="handleSubmit(args,'ApLocationCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ApLocationCreateDialog.hide()"/>
-                </h:panelGroup>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateApLocationTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{apLocationController.selected.id}" title="#{bundle.CreateApLocationTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_macaddr}" for="macaddr" />
+                    <h:inputText id="macaddr" value="#{apLocationController.selected.macaddr}" title="#{bundle.CreateApLocationTitle_macaddr}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_macaddr}"/>
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_ssid}" for="ssid" />
+                    <h:inputText id="ssid" value="#{apLocationController.selected.ssid}" title="#{bundle.CreateApLocationTitle_ssid}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_ssid}"/>
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_latitude}" for="latitude" />
+                    <h:inputText id="latitude" value="#{apLocationController.selected.latitude}" title="#{bundle.CreateApLocationTitle_latitude}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_latitude}"/>
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_longitude}" for="longitude" />
+                    <h:inputText id="longitude" value="#{apLocationController.selected.longitude}" title="#{bundle.CreateApLocationTitle_longitude}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_longitude}"/>
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_accuracy}" for="accuracy" />
+                    <h:inputText id="accuracy" value="#{apLocationController.selected.accuracy}" title="#{bundle.CreateApLocationTitle_accuracy}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_accuracy}"/>
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_ipAddr}" for="ipAddr" />
+                    <h:inputText id="ipAddr" value="#{apLocationController.selected.ipAddr}" title="#{bundle.CreateApLocationTitle_ipAddr}" required="true" requiredMessage="#{bundle.CreateApLocationRequiredMessage_ipAddr}"/>
+                    <h:outputLabel value="#{bundle.CreateApLocationLabel_popularity}" for="popularity" />
+                    <h:inputText id="popularity" value="#{apLocationController.selected.popularity}" title="#{bundle.CreateApLocationTitle_popularity}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{apLocationController.create}" value="#{bundle.CreateApLocationSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{apLocationController.prepareList}" value="#{bundle.CreateApLocationShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateApLocationIndexLink}"/>
             </h:form>
-        </p:dialog>
-
+        </ui:define>
     </ui:composition>
+
 </html>

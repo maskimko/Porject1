@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateApInterfaceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateApInterfaceLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{apInterfaceController.selected.id}" title="#{bundle.CreateApInterfaceTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateApInterfaceLabel_ipAddress}" for="ipAddress" />
+                    <h:inputText id="ipAddress" value="#{apInterfaceController.selected.ipAddress}" title="#{bundle.CreateApInterfaceTitle_ipAddress}" required="true" requiredMessage="#{bundle.CreateApInterfaceRequiredMessage_ipAddress}"/>
+                    <h:outputLabel value="#{bundle.CreateApInterfaceLabel_apLocation}" for="apLocation" />
+                    <h:selectOneMenu id="apLocation" value="#{apInterfaceController.selected.apLocation}" title="#{bundle.CreateApInterfaceTitle_apLocation}" >
+                        <f:selectItems value="#{apLocationController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{apInterfaceController.create}" value="#{bundle.CreateApInterfaceSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{apInterfaceController.prepareList}" value="#{bundle.CreateApInterfaceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateApInterfaceIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
