@@ -6,6 +6,9 @@
 package ua.pp.msk.project1.entities;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -16,6 +19,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +29,8 @@ import java.util.Date;
 @Entity
 public class DeviceLocation implements Serializable {
 
+   
+    
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     private DeviceLocationPK id;
@@ -41,19 +48,29 @@ public class DeviceLocation implements Serializable {
     @Column(name = "accuracy")
     private Integer accuracy;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id", referencedColumnName = "device_id")
+    @JoinColumn(name = "device_id", insertable = false, updatable = false )
     private Device device;
 
     public DeviceLocationPK getId() {
         return id;
     }
-    
-    public Integer getDeviceId(){
-        return getId().getDeviceId();
+
+    public void setTime(String dateString) {
+        Date parsedDate = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/mm/yyyy");
+        try {
+            parsedDate = dateFormat.parse(dateString);
+        } catch (ParseException ex) {
+            Logger.getLogger(DeviceLocation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        getId().setTimestamp(parsedDate);
     }
     
-    public Date getTimestamp(){
-        return getId().getTimestamp();
+    public String getTime(){
+        Date parsedDate = getId().getTimestamp();
+        if (parsedDate == null) { return ""; }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss dd/mm/yyyy");
+        return dateFormat.format(parsedDate, null, null).toString();
     }
 
     public void setId(DeviceLocationPK id) {

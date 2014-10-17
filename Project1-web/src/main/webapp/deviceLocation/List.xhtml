@@ -10,76 +10,76 @@
             <h:outputText value="#{bundle.ListDeviceLocationTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-        <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:outputText escape="false" value="#{bundle.ListDeviceLocationEmpty}" rendered="#{deviceLocationController.items.rowCount == 0}"/>
-            <h:panelGroup rendered="#{deviceLocationController.items.rowCount > 0}">
-                <h:outputText value="#{deviceLocationController.pagination.pageFirstItem + 1}..#{deviceLocationController.pagination.pageLastItem + 1}/#{deviceLocationController.pagination.itemsCount}"/>&nbsp;
-                <h:commandLink action="#{deviceLocationController.previous}" value="#{bundle.Previous} #{deviceLocationController.pagination.pageSize}" rendered="#{deviceLocationController.pagination.hasPreviousPage}"/>&nbsp;
-                <h:commandLink action="#{deviceLocationController.next}" value="#{bundle.Next} #{deviceLocationController.pagination.pageSize}" rendered="#{deviceLocationController.pagination.hasNextPage}"/>&nbsp;
-                <h:dataTable value="#{deviceLocationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_id_timestamp}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id.timestamp}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_id_deviceId}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id.deviceId}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_deviceId}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.deviceId}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_timestamp}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.timestamp}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_latitude}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.latitude}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_longitude}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.longitude}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceLocationTitle_accuracy}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.accuracy}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
-                        </f:facet>
-                        <h:commandLink action="#{deviceLocationController.prepareView}" value="#{bundle.ListDeviceLocationViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{deviceLocationController.prepareEdit}" value="#{bundle.ListDeviceLocationEditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{deviceLocationController.destroy}" value="#{bundle.ListDeviceLocationDestroyLink}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:panelGroup>
-            <br />
-            <h:commandLink action="#{deviceLocationController.prepareCreate}" value="#{bundle.ListDeviceLocationCreateLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.ListDeviceLocationIndexLink}"/>
-        </h:form>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDeviceLocationEmpty}" rendered="#{deviceLocationController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{deviceLocationController.items.rowCount > 0}">
+                    <h:outputText value="#{deviceLocationController.pagination.pageFirstItem + 1}..#{deviceLocationController.pagination.pageLastItem + 1}/#{deviceLocationController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{deviceLocationController.previous}" value="#{bundle.Previous} #{deviceLocationController.pagination.pageSize}" rendered="#{deviceLocationController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{deviceLocationController.next}" value="#{bundle.Next} #{deviceLocationController.pagination.pageSize}" rendered="#{deviceLocationController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{deviceLocationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_id_timestamp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id.timestamp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_id_deviceId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id.deviceId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_deviceId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.deviceId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_timestamp}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.timestamp}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_latitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.latitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_longitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.longitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceLocationTitle_accuracy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.accuracy}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{deviceLocationController.prepareView}" value="#{bundle.ListDeviceLocationViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{deviceLocationController.prepareEdit}" value="#{bundle.ListDeviceLocationEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{deviceLocationController.destroy}" value="#{bundle.ListDeviceLocationDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{deviceLocationController.prepareCreate}" value="#{bundle.ListDeviceLocationCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDeviceLocationIndexLink}"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 

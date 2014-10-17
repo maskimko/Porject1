@@ -1,4 +1,4 @@
-package ua.pp.msk.project1.jsfclasses.util;
+package ua.pp.msk.project1.jsf.util;
 
 import javax.faces.model.DataModel;
 

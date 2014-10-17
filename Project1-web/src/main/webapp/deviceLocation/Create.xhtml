@@ -16,13 +16,9 @@
             <h:form>
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_id_timestamp}" for="id_timestamp" />
-                    <h:inputText id="id_timestamp" value="#{deviceLocationController.selected.id.timestamp}" title="#{bundle.CreateDeviceLocationTitle_id_timestamp}" />
+                    <h:inputText id="id_timestamp" value="#{deviceLocationController.selected.time}" title="#{bundle.CreateDeviceLocationTitle_id_timestamp}" />
                     <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_id_deviceId}" for="id_deviceId" />
                     <h:inputText id="id_deviceId" value="#{deviceLocationController.selected.id.deviceId}" title="#{bundle.CreateDeviceLocationTitle_id_deviceId}" />
-                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_deviceId}" for="deviceId" />
-                    <h:inputText id="deviceId" value="#{deviceLocationController.selected.deviceId}" title="#{bundle.CreateDeviceLocationTitle_deviceId}" />
-                    <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_timestamp}" for="timestamp" />
-                    <h:inputText id="timestamp" value="#{deviceLocationController.selected.timestamp}" title="#{bundle.CreateDeviceLocationTitle_timestamp}" />
                     <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_latitude}" for="latitude" />
                     <h:inputText id="latitude" value="#{deviceLocationController.selected.latitude}" title="#{bundle.CreateDeviceLocationTitle_latitude}" />
                     <h:outputLabel value="#{bundle.CreateDeviceLocationLabel_longitude}" for="longitude" />

@@ -1,9 +1,9 @@
-package ua.pp.msk.project1.jsfclasses;
+package ua.pp.msk.project1.jsf;
 
-import ua.pp.msk.project1.entities.DeviceLocation;
-import ua.pp.msk.project1.jsfclasses.util.JsfUtil;
-import ua.pp.msk.project1.jsfclasses.util.PaginationHelper;
-import ua.pp.msk.project1.sessionbeans.DeviceLocationFacade;
+import ua.pp.msk.project1.entities.Device;
+import ua.pp.msk.project1.jsf.util.JsfUtil;
+import ua.pp.msk.project1.jsf.util.PaginationHelper;
+import ua.pp.msk.project1.sessionbeans.DeviceFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,33 +18,32 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-
-@ManagedBean(name="deviceLocationController")
+@ManagedBean(name = "deviceController")
 @SessionScoped
-public class DeviceLocationController implements Serializable {
+public class DeviceController implements Serializable {
 
-
-    private DeviceLocation current;
+    private Device current;
     private DataModel items = null;
-    @EJB private ua.pp.msk.project1.sessionbeans.DeviceLocationFacade ejbFacade;
+    @EJB
+    private ua.pp.msk.project1.sessionbeans.DeviceFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public DeviceLocationController() {
+    public DeviceController() {
     }
 
-    public DeviceLocation getSelected() {
+    public Device getSelected() {
         if (current == null) {
-            current = new DeviceLocation();
-            current.setId(new ua.pp.msk.project1.entities.DeviceLocationPK());
+            current = new Device();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private DeviceLocationFacade getFacade() {
+    private DeviceFacade getFacade() {
         return ejbFacade;
     }
+
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -56,7 +55,7 @@ public class DeviceLocationController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
         }
@@ -69,14 +68,13 @@ public class DeviceLocationController implements Serializable {
     }
 
     public String prepareView() {
-        current = (DeviceLocation)getItems().getRowData();
+        current = (Device) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new DeviceLocation();
-        current.setId(new ua.pp.msk.project1.entities.DeviceLocationPK());
+        current = new Device();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -84,7 +82,7 @@ public class DeviceLocationController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DeviceLocationCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DeviceCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -93,7 +91,7 @@ public class DeviceLocationController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (DeviceLocation)getItems().getRowData();
+        current = (Device) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -101,7 +99,7 @@ public class DeviceLocationController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DeviceLocationUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DeviceUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -110,7 +108,7 @@ public class DeviceLocationController implements Serializable {
     }
 
     public String destroy() {
-        current = (DeviceLocation)getItems().getRowData();
+        current = (Device) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -134,7 +132,7 @@ public class DeviceLocationController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DeviceLocationDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("DeviceDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -144,14 +142,14 @@ public class DeviceLocationController implements Serializable {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
@@ -190,37 +188,28 @@ public class DeviceLocationController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-
-    @FacesConverter(forClass=DeviceLocation.class)
-    public static class DeviceLocationControllerConverter implements Converter {
-
-        private static final String SEPARATOR = "#";
-        private static final String SEPARATOR_ESCAPED = "\\#";
+    @FacesConverter(forClass = Device.class)
+    public static class DeviceControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DeviceLocationController controller = (DeviceLocationController)facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "deviceLocationController");
+            DeviceController controller = (DeviceController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "deviceController");
             return controller.ejbFacade.find(getKey(value));
         }
 
-        ua.pp.msk.project1.entities.DeviceLocationPK getKey(String value) {
-            ua.pp.msk.project1.entities.DeviceLocationPK key;
-            String values[] = value.split(SEPARATOR_ESCAPED);
-            key = new ua.pp.msk.project1.entities.DeviceLocationPK();
-            key.setDeviceId(Integer.valueOf(values[0]));
-            key.setTimestamp(java.sql.Date.valueOf(values[1]));
+        java.lang.Integer getKey(String value) {
+            java.lang.Integer key;
+            key = Integer.valueOf(value);
             return key;
         }
 
-        String getStringKey(ua.pp.msk.project1.entities.DeviceLocationPK value) {
+        String getStringKey(java.lang.Integer value) {
             StringBuilder sb = new StringBuilder();
-            sb.append(value.getDeviceId());
-            sb.append(SEPARATOR);
-            sb.append(value.getTimestamp());
+            sb.append(value);
             return sb.toString();
         }
 
@@ -229,11 +218,11 @@ public class DeviceLocationController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof DeviceLocation) {
-                DeviceLocation o = (DeviceLocation) object;
+            if (object instanceof Device) {
+                Device o = (Device) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+DeviceLocation.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Device.class.getName());
             }
         }
 

@@ -1,9 +1,9 @@
-package ua.pp.msk.project1.jsfclasses;
+package ua.pp.msk.project1.jsf;
 
-import ua.pp.msk.project1.entities.ApLocation;
-import ua.pp.msk.project1.jsfclasses.util.JsfUtil;
-import ua.pp.msk.project1.jsfclasses.util.PaginationHelper;
-import ua.pp.msk.project1.sessionbeans.ApLocationFacade;
+import ua.pp.msk.project1.entities.ApInterface;
+import ua.pp.msk.project1.jsf.util.JsfUtil;
+import ua.pp.msk.project1.jsf.util.PaginationHelper;
+import ua.pp.msk.project1.sessionbeans.ApInterfaceFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -18,32 +18,32 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
-
-@ManagedBean(name="apLocationController")
+@ManagedBean(name = "apInterfaceController")
 @SessionScoped
-public class ApLocationController implements Serializable {
+public class ApInterfaceController implements Serializable {
 
-
-    private ApLocation current;
+    private ApInterface current;
     private DataModel items = null;
-    @EJB private ua.pp.msk.project1.sessionbeans.ApLocationFacade ejbFacade;
+    @EJB
+    private ua.pp.msk.project1.sessionbeans.ApInterfaceFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
-    public ApLocationController() {
+    public ApInterfaceController() {
     }
 
-    public ApLocation getSelected() {
+    public ApInterface getSelected() {
         if (current == null) {
-            current = new ApLocation();
+            current = new ApInterface();
             selectedItemIndex = -1;
         }
         return current;
     }
 
-    private ApLocationFacade getFacade() {
+    private ApInterfaceFacade getFacade() {
         return ejbFacade;
     }
+
     public PaginationHelper getPagination() {
         if (pagination == null) {
             pagination = new PaginationHelper(10) {
@@ -55,7 +55,7 @@ public class ApLocationController implements Serializable {
 
                 @Override
                 public DataModel createPageDataModel() {
-                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem()+getPageSize()}));
+                    return new ListDataModel(getFacade().findRange(new int[]{getPageFirstItem(), getPageFirstItem() + getPageSize()}));
                 }
             };
         }
@@ -68,13 +68,13 @@ public class ApLocationController implements Serializable {
     }
 
     public String prepareView() {
-        current = (ApLocation)getItems().getRowData();
+        current = (ApInterface) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
 
     public String prepareCreate() {
-        current = new ApLocation();
+        current = new ApInterface();
         selectedItemIndex = -1;
         return "Create";
     }
@@ -82,7 +82,7 @@ public class ApLocationController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ApLocationCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ApInterfaceCreated"));
             return prepareCreate();
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -91,7 +91,7 @@ public class ApLocationController implements Serializable {
     }
 
     public String prepareEdit() {
-        current = (ApLocation)getItems().getRowData();
+        current = (ApInterface) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "Edit";
     }
@@ -99,7 +99,7 @@ public class ApLocationController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ApLocationUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ApInterfaceUpdated"));
             return "View";
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
@@ -108,7 +108,7 @@ public class ApLocationController implements Serializable {
     }
 
     public String destroy() {
-        current = (ApLocation)getItems().getRowData();
+        current = (ApInterface) getItems().getRowData();
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         performDestroy();
         recreatePagination();
@@ -132,7 +132,7 @@ public class ApLocationController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ApLocationDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ApInterfaceDeleted"));
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
@@ -142,14 +142,14 @@ public class ApLocationController implements Serializable {
         int count = getFacade().count();
         if (selectedItemIndex >= count) {
             // selected index cannot be bigger than number of items:
-            selectedItemIndex = count-1;
+            selectedItemIndex = count - 1;
             // go to previous page if last page disappeared:
             if (pagination.getPageFirstItem() >= count) {
                 pagination.previousPage();
             }
         }
         if (selectedItemIndex >= 0) {
-            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex+1}).get(0);
+            current = getFacade().findRange(new int[]{selectedItemIndex, selectedItemIndex + 1}).get(0);
         }
     }
 
@@ -188,27 +188,26 @@ public class ApLocationController implements Serializable {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
 
-
-    @FacesConverter(forClass=ApLocation.class)
-    public static class ApLocationControllerConverter implements Converter {
+    @FacesConverter(forClass = ApInterface.class)
+    public static class ApInterfaceControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            ApLocationController controller = (ApLocationController)facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "apLocationController");
+            ApInterfaceController controller = (ApInterfaceController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "apInterfaceController");
             return controller.ejbFacade.find(getKey(value));
         }
 
-        java.lang.Integer getKey(String value) {
-            java.lang.Integer key;
-            key = Integer.valueOf(value);
+        java.lang.Long getKey(String value) {
+            java.lang.Long key;
+            key = Long.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.Integer value) {
+        String getStringKey(java.lang.Long value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -219,11 +218,11 @@ public class ApLocationController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof ApLocation) {
-                ApLocation o = (ApLocation) object;
+            if (object instanceof ApInterface) {
+                ApInterface o = (ApInterface) object;
                 return getStringKey(o.getId());
             } else {
-                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: "+ApLocation.class.getName());
+                throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + ApInterface.class.getName());
             }
         }
 

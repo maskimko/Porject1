@@ -10,82 +10,82 @@
             <h:outputText value="#{bundle.ListApLocationTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-        <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:outputText escape="false" value="#{bundle.ListApLocationEmpty}" rendered="#{apLocationController.items.rowCount == 0}"/>
-            <h:panelGroup rendered="#{apLocationController.items.rowCount > 0}">
-                <h:outputText value="#{apLocationController.pagination.pageFirstItem + 1}..#{apLocationController.pagination.pageLastItem + 1}/#{apLocationController.pagination.itemsCount}"/>&nbsp;
-                <h:commandLink action="#{apLocationController.previous}" value="#{bundle.Previous} #{apLocationController.pagination.pageSize}" rendered="#{apLocationController.pagination.hasPreviousPage}"/>&nbsp;
-                <h:commandLink action="#{apLocationController.next}" value="#{bundle.Next} #{apLocationController.pagination.pageSize}" rendered="#{apLocationController.pagination.hasNextPage}"/>&nbsp;
-                <h:dataTable value="#{apLocationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_id}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_macaddr}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.macaddr}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_ssid}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.ssid}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_latitude}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.latitude}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_longitude}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.longitude}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_accuracy}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.accuracy}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_ipAddr}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.ipAddr}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListApLocationTitle_popularity}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.popularity}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
-                        </f:facet>
-                        <h:commandLink action="#{apLocationController.prepareView}" value="#{bundle.ListApLocationViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{apLocationController.prepareEdit}" value="#{bundle.ListApLocationEditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{apLocationController.destroy}" value="#{bundle.ListApLocationDestroyLink}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:panelGroup>
-            <br />
-            <h:commandLink action="#{apLocationController.prepareCreate}" value="#{bundle.ListApLocationCreateLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.ListApLocationIndexLink}"/>
-        </h:form>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListApLocationEmpty}" rendered="#{apLocationController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{apLocationController.items.rowCount > 0}">
+                    <h:outputText value="#{apLocationController.pagination.pageFirstItem + 1}..#{apLocationController.pagination.pageLastItem + 1}/#{apLocationController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{apLocationController.previous}" value="#{bundle.Previous} #{apLocationController.pagination.pageSize}" rendered="#{apLocationController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{apLocationController.next}" value="#{bundle.Next} #{apLocationController.pagination.pageSize}" rendered="#{apLocationController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{apLocationController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_macaddr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.macaddr}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_ssid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ssid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_latitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.latitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_longitude}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.longitude}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_accuracy}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.accuracy}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_ipAddr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ipAddr}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListApLocationTitle_popularity}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.popularity}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{apLocationController.prepareView}" value="#{bundle.ListApLocationViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{apLocationController.prepareEdit}" value="#{bundle.ListApLocationEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{apLocationController.destroy}" value="#{bundle.ListApLocationDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{apLocationController.prepareCreate}" value="#{bundle.ListApLocationCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListApLocationIndexLink}"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 

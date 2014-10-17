@@ -32,8 +32,8 @@ public class ApLocation implements Serializable {
     private Integer id;
 
     @Basic(optional = false)
-    @Min(value = 0x0L)
-    @Max(value = 0xffffffffffffL)
+    @Min(value = 0x0L, message = "Less than min 0")
+    @Max(value = 0xffffffffffffL, message = "More that max 0xFF:FF:FF:FF:FF:FF")
     @NotNull
     @Column(name = "mac_address")
     private Long macaddr;
@@ -42,14 +42,14 @@ public class ApLocation implements Serializable {
     @Size(min = 1, max = 20)
     private String ssid;
     @Basic(optional = false)
-    @Min(value = -90L)
-    @Max(value = 90L)
+    @Min(value = -90L,  message = "Less than min -90")
+    @Max(value = 90L,  message = "More than max 90")
     @Column(name = "latitude")
     @NotNull
     private Long latitude;
     @Basic(optional = false)
-    @Min(value = -180L)
-    @Max(value = 180L)
+    @Min(value = -180L,  message = "Less than min -180")
+    @Max(value = 180L,  message = "More than max 180")
     @Column(name = "longitude")
     @NotNull
     private Long longitude;
@@ -58,8 +58,8 @@ public class ApLocation implements Serializable {
     @Column(name = "accuracy")
     private Integer accuracy;
     @Basic(optional = false)
-    @Min(value = 0x0)
-    @Max(value = 0xffffffff)
+   //@Min(value = 0x0,  message = "Less than min 0")
+   // @Max(value = 0xffffffff, message = "More than max 255.255.255.255")
     @NotNull
     @Column(name = "ip_address")
     private Integer ipAddr;

@@ -10,64 +10,64 @@
             <h:outputText value="#{bundle.ListDeviceTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-        <h:form styleClass="jsfcrud_list_form">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:outputText escape="false" value="#{bundle.ListDeviceEmpty}" rendered="#{deviceController.items.rowCount == 0}"/>
-            <h:panelGroup rendered="#{deviceController.items.rowCount > 0}">
-                <h:outputText value="#{deviceController.pagination.pageFirstItem + 1}..#{deviceController.pagination.pageLastItem + 1}/#{deviceController.pagination.itemsCount}"/>&nbsp;
-                <h:commandLink action="#{deviceController.previous}" value="#{bundle.Previous} #{deviceController.pagination.pageSize}" rendered="#{deviceController.pagination.hasPreviousPage}"/>&nbsp;
-                <h:commandLink action="#{deviceController.next}" value="#{bundle.Next} #{deviceController.pagination.pageSize}" rendered="#{deviceController.pagination.hasNextPage}"/>&nbsp;
-                <h:dataTable value="#{deviceController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceTitle_id}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceTitle_model}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.model}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceTitle_description}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.description}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceTitle_owner}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.owner}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListDeviceTitle_macAddr}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.macAddr}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
-                        </f:facet>
-                        <h:commandLink action="#{deviceController.prepareView}" value="#{bundle.ListDeviceViewLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{deviceController.prepareEdit}" value="#{bundle.ListDeviceEditLink}"/>
-                        <h:outputText value=" "/>
-                        <h:commandLink action="#{deviceController.destroy}" value="#{bundle.ListDeviceDestroyLink}"/>
-                    </h:column>
-                </h:dataTable>
-            </h:panelGroup>
-            <br />
-            <h:commandLink action="#{deviceController.prepareCreate}" value="#{bundle.ListDeviceCreateLink}"/>
-            <br />
-            <br />
-            <h:link outcome="/index" value="#{bundle.ListDeviceIndexLink}"/>
-        </h:form>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDeviceEmpty}" rendered="#{deviceController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{deviceController.items.rowCount > 0}">
+                    <h:outputText value="#{deviceController.pagination.pageFirstItem + 1}..#{deviceController.pagination.pageLastItem + 1}/#{deviceController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{deviceController.previous}" value="#{bundle.Previous} #{deviceController.pagination.pageSize}" rendered="#{deviceController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{deviceController.next}" value="#{bundle.Next} #{deviceController.pagination.pageSize}" rendered="#{deviceController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{deviceController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceTitle_model}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.model}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceTitle_description}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceTitle_owner}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.owner}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDeviceTitle_macAddr}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.macAddr}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{deviceController.prepareView}" value="#{bundle.ListDeviceViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{deviceController.prepareEdit}" value="#{bundle.ListDeviceEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{deviceController.destroy}" value="#{bundle.ListDeviceDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{deviceController.prepareCreate}" value="#{bundle.ListDeviceCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDeviceIndexLink}"/>
+            </h:form>
         </ui:define>
     </ui:composition>
 

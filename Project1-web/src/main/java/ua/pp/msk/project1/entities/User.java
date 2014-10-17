@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
     @Entity
-@Table(name = "user_id")
+@Table(name = "users")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query = "SELECT e FROM User e"),
@@ -76,7 +76,7 @@ public class User implements Serializable {
     @Column(name="middle_name")
     private String middleName;
 
-       @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner")
     private List<Device> devices;
 
     public List<Device> getDevices() {
