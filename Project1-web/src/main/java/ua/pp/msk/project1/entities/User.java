@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -79,6 +80,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "owner")
     private List<Device> devices;
 
+    @XmlTransient
     public List<Device> getDevices() {
         return devices;
     }

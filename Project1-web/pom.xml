@@ -44,6 +44,18 @@
             <version>5.0</version>
         </dependency>
         <dependency>
+            <groupId>com.googlecode.gmaps4jsf</groupId>
+            <artifactId>gmaps4jsf-project</artifactId>
+            <version>3.0.1-SNAPSHOT</version>
+            <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>

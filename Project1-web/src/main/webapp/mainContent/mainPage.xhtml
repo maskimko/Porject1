@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/userUITemplate.xhtml" >
+        <ui:define name="title">
+            <h:outputText value="Google Map testing"/>
+        </ui:define>
+        <ui:define name="left">
+            left
+        </ui:define>
+        <ui:define name="content">
+            <script src="https://maps.googleapis.com/maps/api/js?sensor=false"/>
+            <p:gmap  center="50.423273, 30.478338" type="hybrid" style="width: 600px; height: 450px" zoom="15"/>
+        </ui:define>
+    </ui:composition>
+</html>

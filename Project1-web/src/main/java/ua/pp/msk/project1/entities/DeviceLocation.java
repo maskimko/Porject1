@@ -21,12 +21,14 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author maskimko
  */
 @Entity
+@XmlRootElement
 public class DeviceLocation implements Serializable {
 
    
