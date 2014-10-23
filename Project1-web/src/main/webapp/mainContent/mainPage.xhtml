@@ -14,7 +14,7 @@
         </ui:define>
         <ui:define name="content">
             <script src="https://maps.googleapis.com/maps/api/js?sensor=false"/>
-            <p:gmap  center="50.423273, 30.478338" type="hybrid" style="width: 600px; height: 450px" zoom="15"/>
+            <p:gmap  center="50.423273, 30.478338" type="hybrid" style="width: 600px; height: 450px" zoom="15" model="#{markersView.simpleModel}"/>
         </ui:define>
     </ui:composition>
 </html>

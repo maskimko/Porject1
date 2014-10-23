@@ -18,16 +18,14 @@
 
     <h:body>
         <p:growl id="growl" life="3000"/>
-        <f:facet name="last">
-            <h:outputStylesheet library="css" name="customStyles.css"/>
-        </f:facet>
+       
         <p:layout fullPage="true">
             <p:layoutUnit position="north" >
                 <ui:insert name="header">
-                    <ui:include src="Sections/header.xhtml"/>
+                    <h:outputText value="Some text in the North"/>
                 </ui:insert>
             </p:layoutUnit>
-            <p:layoutUnit position="west" collapsible="true">
+            <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
                 <h:outputText value="Left panel"/>
             </p:layoutUnit>
             <p:layoutUnit position="center" >
