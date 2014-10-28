@@ -63,27 +63,27 @@ public class DeviceLocationFacadeREST extends AbstractFacade<DeviceLocation> {
         super.create(entity);
     }
 
-    @PUT
-    @Path("{id}")
-    @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") PathSegment id, DeviceLocation entity) {
-        super.edit(entity);
-    }
-
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") PathSegment id) {
-        ua.pp.msk.project1.entities.DeviceLocationPK key = getPrimaryKey(id);
-        super.remove(super.find(key));
-    }
-
-    @GET
-    @Path("{id}")
-    @Produces({"application/xml", "application/json"})
-    public DeviceLocation find(@PathParam("id") PathSegment id) {
-        ua.pp.msk.project1.entities.DeviceLocationPK key = getPrimaryKey(id);
-        return super.find(key);
-    }
+//    @PUT
+//    @Path("{id}")
+//    @Consumes({"application/xml", "application/json"})
+//    public void edit(@PathParam("id") PathSegment id, DeviceLocation entity) {
+//        super.edit(entity);
+//    }
+//
+//    @DELETE
+//    @Path("{id}")
+//    public void remove(@PathParam("id") PathSegment id) {
+//        ua.pp.msk.project1.entities.DeviceLocationPK key = getPrimaryKey(id);
+//        super.remove(super.find(key));
+//    }
+//
+//    @GET
+//    @Path("{id}")
+//    @Produces({"application/xml", "application/json"})
+//    public DeviceLocation find(@PathParam("id") PathSegment id) {
+//        ua.pp.msk.project1.entities.DeviceLocationPK key = getPrimaryKey(id);
+//        return super.find(key);
+//    }
 
     @GET
     @Override

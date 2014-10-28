@@ -1,39 +1,41 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
-    <h:head>
-        <title><ui:insert name="title">Default title</ui:insert></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="author" content="Maksym Shkolnyi (aka maskimko)"/>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
-        <ui:insert name="params"></ui:insert>
-    </h:head>
+<h:head>
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Maksym Shkolnyi (aka maskimko)" />
+	<h:outputStylesheet name="./css/default.css" />
+	<h:outputStylesheet name="./css/cssLayout.css" />
+	<ui:insert name="params"></ui:insert>
+</h:head>
 
-    <h:body>
-        <p:growl id="growl" life="3000"/>
-       
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" >
-                <ui:insert name="header">
-                    <h:outputText value="Some text in the North"/>
-                </ui:insert>
-            </p:layoutUnit>
-            <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
-                <h:outputText value="Left panel"/>
-            </p:layoutUnit>
-            <p:layoutUnit position="center" >
-                <ui:insert name="content">Content</ui:insert>
-            </p:layoutUnit>
-        </p:layout>
-        <p:layoutUnit position="south">
-            <ui:insert name="bottom">Bottom</ui:insert>
-        </p:layoutUnit>
-    </h:body>
+<h:body>
+	<p:growl id="growl" life="3000" />
+	<h:form id="userForm">
+		<p:layout fullPage="true">
+			<p:layoutUnit position="north">
+				<ui:insert name="header">
+					<h:outputText value="Some text in the North" />
+				</ui:insert>
+			</p:layoutUnit>
+			<p:layoutUnit position="west" size="200" header="Left"
+				resizable="true" closable="true" collapsible="true">
+				<ui:insert name="left">Left panel</ui:insert>
+			</p:layoutUnit>
+			<p:layoutUnit position="center">
+				<ui:insert name="content">Content</ui:insert>
+			</p:layoutUnit>
+			<p:layoutUnit position="south">
+				<ui:insert name="bottom">Bottom</ui:insert>
+			</p:layoutUnit>
+		</p:layout>
+	</h:form>
+</h:body>
 </html>

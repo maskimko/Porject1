@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -23,6 +25,7 @@ public class DeviceLocationPK implements Serializable {
     @Column(name="device_id")
     private Integer deviceId;
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name="timestamp")
     private Date timestamp;
     
