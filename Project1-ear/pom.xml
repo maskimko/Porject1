@@ -1,51 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>Project1</artifactId>
-    <groupId>ua.pp.msk.project1</groupId>
-    <version>0.01</version>
-  </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>Project1</artifactId>
+		<groupId>ua.pp.msk.project1</groupId>
+		<version>0.01</version>
+	</parent>
 
-  <groupId>ua.pp.msk.project1</groupId>
-  <artifactId>Project1-ear</artifactId>
-  <version>0.01</version>
-  <packaging>ear</packaging>
+	<artifactId>Project1-ear</artifactId>
+	<packaging>ear</packaging>
 
-  <name>Project1-ear</name>
+	<name>Project1-ear</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-ear-plugin</artifactId>
-        <version>2.6</version>
-        <configuration>
-            <version>6</version>
-            <defaultLibBundleDir>lib</defaultLibBundleDir>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-    <dependencies>
-        <dependency>
-            <groupId>ua.pp.msk.project1</groupId>
-            <artifactId>Project1-web</artifactId>
-            <version>0.03</version>
-            <type>war</type>
-        </dependency>
-    </dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.0.2.Final</version>
+        
+				<configuration>
+                    
+                    <port>9990</port>
+                    <username>maskimko</username>
+                   <password>@M60log3Ra</password>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>ua.pp.msk.project1</groupId>
+			<artifactId>Project1-web</artifactId>
+			<version>0.03</version>
+			<type>war</type>
+		</dependency>
+	</dependencies>
 </project>
