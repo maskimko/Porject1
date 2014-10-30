@@ -8,7 +8,8 @@
     <properties>
       <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
       <property name="dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-     
+      <property name="hibernate.hbm2ddl.import_files" value="/load.sql"/>
+      <property name="hibernate.connection.charSet" value="UTF-8"/>
     </properties>
   </persistence-unit>
 </persistence>
