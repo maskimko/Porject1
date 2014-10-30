@@ -28,7 +28,7 @@ import ua.pp.msk.project1.entities.DeviceLocationPK;
 @Stateless
 @Path("ua.pp.msk.project1.entities.devicelocation")
 public class DeviceLocationFacadeREST extends AbstractFacade<DeviceLocation> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     private DeviceLocationPK getPrimaryKey(PathSegment pathSegment) {

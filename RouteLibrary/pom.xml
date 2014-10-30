@@ -4,9 +4,8 @@
     <parent>
         <groupId>ua.pp.msk.project1</groupId>
         <artifactId>Project1</artifactId>
-        <version>0.01</version>
+        <version>0.03</version>
     </parent>
-    <groupId>ua.pp.msk.project1.lib</groupId>
     <artifactId>RouteLibrary</artifactId>
     <packaging>jar</packaging>
     <dependencies>

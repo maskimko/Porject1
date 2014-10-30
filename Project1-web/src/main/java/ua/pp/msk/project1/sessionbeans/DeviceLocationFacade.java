@@ -16,7 +16,7 @@ import ua.pp.msk.project1.entities.DeviceLocation;
  */
 @Stateless
 public class DeviceLocationFacade extends AbstractFacade<DeviceLocation> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     @Override

@@ -16,7 +16,7 @@ import ua.pp.msk.project1.entities.ApLocation;
  */
 @Stateless
 public class ApLocationFacade extends AbstractFacade<ApLocation> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     @Override

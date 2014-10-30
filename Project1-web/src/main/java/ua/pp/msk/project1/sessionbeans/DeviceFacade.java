@@ -16,7 +16,7 @@ import ua.pp.msk.project1.entities.Device;
  */
 @Stateless
 public class DeviceFacade extends AbstractFacade<Device> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     @Override

@@ -16,7 +16,7 @@ import ua.pp.msk.project1.entities.ApInterface;
  */
 @Stateless
 public class ApInterfaceFacade extends AbstractFacade<ApInterface> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     @Override

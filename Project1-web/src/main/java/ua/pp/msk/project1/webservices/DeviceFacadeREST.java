@@ -26,7 +26,7 @@ import ua.pp.msk.project1.entities.Device;
 @Stateless
 @Path("ua.pp.msk.project1.entities.device")
 public class DeviceFacadeREST extends AbstractFacade<Device> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     public DeviceFacadeREST() {

@@ -26,7 +26,7 @@ import ua.pp.msk.project1.entities.User;
 @Stateless
 @Path("ua.pp.msk.project1.entities.user")
 public class UserFacadeREST extends AbstractFacade<User> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     public UserFacadeREST() {

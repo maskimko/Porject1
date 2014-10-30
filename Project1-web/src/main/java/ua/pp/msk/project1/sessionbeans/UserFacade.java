@@ -16,7 +16,7 @@ import ua.pp.msk.project1.entities.User;
  */
 @Stateless
 public class UserFacade extends AbstractFacade<User> {
-    @PersistenceContext(unitName = "project1_test")
+    @PersistenceContext(unitName = "project1")
     private EntityManager em;
 
     @Override

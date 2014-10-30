@@ -2,9 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ua.pp.msk.project1</groupId>
     <artifactId>Applet1</artifactId>
-    <version>0.08</version>
     <packaging>jar</packaging>
 
     <name>Applet1</name>
@@ -86,4 +84,9 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+    <parent>
+    	<groupId>ua.pp.msk.project1</groupId>
+    	<artifactId>Project1</artifactId>
+    	<version>0.03</version>
+    </parent>
 </project>
