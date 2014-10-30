@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>Project1</artifactId>
 		<groupId>ua.pp.msk.project1</groupId>
-		<version>0.01</version>
+		<version>0.02</version>
 	</parent>
 
 	<artifactId>Project1-ear</artifactId>
@@ -28,8 +28,29 @@
 				<configuration>
                     
                     <port>9990</port>
-                    <username>maskimko</username>
-                   <password>@M60log3Ra</password>
+                    <username>wildfly</username>
+                   <password>wildfly1</password>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.6.Final</version>
+        
+				<configuration>
+                    
+                    <port>9999</port>
+                    <username>wildlfy</username>
+                   <password>wildfly1</password>
 				</configuration>
 				<executions>
 					<execution>

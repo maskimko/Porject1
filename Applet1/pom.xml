@@ -68,7 +68,7 @@
           </execution>
         </executions>
         <configuration>
-          <keystore>/home/maskimko/JavaEE_Workspace/Project1/Applet1/signing/appletKeyStore</keystore>
+          <keystore>signing/appletKeyStore</keystore>
           <alias>applet</alias>
           <!--Passwords were substituted due to security reasons-->
           <storepass>Impression404right</storepass>

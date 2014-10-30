@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ua.pp.msk.project1</groupId>
   <artifactId>Project1</artifactId>
-  <version>0.01</version>
+  <version>0.02</version>
   <packaging>pom</packaging>
   <name>Project1</name>
   <modules>
