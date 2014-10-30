@@ -3,14 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ua.pp.msk.project1</groupId>
   <artifactId>Project1</artifactId>
-  <version>0.02</version>
+  <version>0.03</version>
   <packaging>pom</packaging>
   <name>Project1</name>
   <modules>
-    <module>Project1-ear</module>
     <module>Project1-web</module>
     <module>Applet1</module>
     <module>RouteLibrary</module>
+    <module>Project1-ear</module>
   </modules>
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>

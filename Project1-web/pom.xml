@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>Project1</artifactId>
 		<groupId>ua.pp.msk.project1</groupId>
-		<version>0.02</version>
+		<version>0.03</version>
 	</parent>
 
 	<artifactId>Project1-web</artifactId>

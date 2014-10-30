@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>Project1</artifactId>
 		<groupId>ua.pp.msk.project1</groupId>
-		<version>0.02</version>
+		<version>0.03</version>
 	</parent>
 
 	<artifactId>Project1-ear</artifactId>
@@ -20,39 +20,74 @@
 	<build>
 		<plugins>
 			<plugin>
-				
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <version>1.0.2.Final</version>
-        
+
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.0.2.Final</version>
+
 				<configuration>
-                    
-                    <port>9990</port>
-                    <username>wildfly</username>
-                   <password>wildfly1</password>
+
+					<port>9990</port>
+					<username>wildfly</username>
+					<password>wildfly1</password>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>9.3-1100-jdbc41</version>
+					<name>postgresql.jar</name>
+					<address>subsystem=datasources,data-source=project1</address>
+					<resources>
+						<resource>
+						    
+							
+							<properties>
+								<connection-url>jdbc:postgresql://192.168.124.9:5432/project1</connection-url>
+								<jndi-name>java:jboss/project1</jndi-name>
+								<enabled>true</enabled>
+								<enable>true</enable>
+								<user-name>wildfly</user-name>
+								<password>wildfly</password>
+								<driver-class>org.postgresql.Driver</driver-class>
+								<driver-name>postgresql.jar</driver-name>
+								<use-ccm>false</use-ccm>
+							</properties>
+						</resource>
+					</resources>
+
+
 				</configuration>
 				<executions>
+					<!-- Undeploy the application on clean -->
 					<execution>
-						<phase>install</phase>
+						<id>undeploy</id>
+						<phase>clean</phase>
 						<goals>
-							<goal>deploy</goal>
+							<goal>undeploy</goal>
+						</goals>
+						<configuration>
+							<ignoreMissingDeployment>true</ignoreMissingDeployment>
+						</configuration>
+					</execution>
+
+ 
+					<execution>
+						<id>deploy-driver</id>
+						<phase>install</phase>
+
+						<goals>
+							<goal>deploy-artifact</goal>
 						</goals>
 					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				
-                <groupId>org.jboss.as.plugins</groupId>
-                <artifactId>jboss-as-maven-plugin</artifactId>
-                <version>7.6.Final</version>
-        
-				<configuration>
-                    
-                    <port>9999</port>
-                    <username>wildlfy</username>
-                   <password>wildfly1</password>
-				</configuration>
-				<executions>
+
+			
+					<execution>
+						<id>add-datasource</id>
+						<phase>install</phase>
+
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+					</execution>
+
 					<execution>
 						<phase>install</phase>
 						<goals>
@@ -82,6 +117,18 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1100-jdbc41</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- <dependency>
+			<groupId>ua.pp.msk.project1</groupId>
+			<artifactId>Project1-web</artifactId>
+			<version>0.02</version>
+			<type>war</type>
+		</dependency> -->
 		<dependency>
 			<groupId>ua.pp.msk.project1</groupId>
 			<artifactId>Project1-web</artifactId>
