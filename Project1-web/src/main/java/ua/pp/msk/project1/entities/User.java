@@ -7,12 +7,18 @@ package ua.pp.msk.project1.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -45,12 +51,12 @@ public class User implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 15)
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 32)
-    @Column(name = "mail")
+    @Column(name = "mail", unique = true)
     private String mail;
     @Basic(optional = false)
     @NotNull
@@ -80,6 +86,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "owner")
     private List<Device> devices;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", 
+    joinColumns = {@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    private Set<Role> roles;
+    
     @XmlTransient
     public List<Device> getDevices() {
         return devices;
@@ -91,7 +103,15 @@ public class User implements Serializable {
     
     
     
-    public User() {
+    public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public User() {
     }
 
     public User(Long userId) {

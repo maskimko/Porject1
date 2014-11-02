@@ -19,6 +19,26 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Secure Content</web-resource-name>
+            <url-pattern>/restricted/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>AuthorizedUser</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>The Restricted Zone</realm-name>
+    </login-config>
+        <security-role>
+        <description>The role required to access restricted content </description>
+        <role-name>AuthorizedUser</role-name>
+    </security-role>
 </web-app>
