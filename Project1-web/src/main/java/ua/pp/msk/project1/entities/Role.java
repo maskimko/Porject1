@@ -32,10 +32,10 @@ public class Role implements Serializable {
 	@Column(name = "role_id")
 	private int id;
 	@Basic(optional = false)
-	@Column(name = "name", unique = true)
+	@Column(name = "role_name", unique = true)
 	private String name;
 	@Basic(optional = true)
-	@Column( name = "description")
+	@Column( name = "role_description")
 	private String description;
 	@ManyToMany(mappedBy = "roles")
 	private Set<User> users;
