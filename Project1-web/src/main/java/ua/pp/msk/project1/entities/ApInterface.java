@@ -29,18 +29,18 @@ public class ApInterface implements Serializable {
     /**
      * White internet ip address
      */
-    public Integer ipAddress;
+    private Integer ipAddress;
     @Id
     @NotNull
     @Column(name = "mac_address")
     /**
      * This is an interface id
      */
-    public Long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ap_location")
-    public ApLocation apLocation;
+    private ApLocation apLocation;
 
     public Long getId() {
         return id;

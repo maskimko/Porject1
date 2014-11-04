@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>Project1</artifactId>
 		<groupId>ua.pp.msk.project1</groupId>
-		<version>0.03</version>
+		<version>0.04</version>
 	</parent>
 
 	<artifactId>Project1-ear</artifactId>
@@ -127,7 +127,7 @@
 		<dependency>
 			<groupId>ua.pp.msk.project1</groupId>
 			<artifactId>Project1-web</artifactId>
-			<version>0.03</version>
+			<version>0.04</version>
 			<type>war</type>
 		</dependency>
 	</dependencies>

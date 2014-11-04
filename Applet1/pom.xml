@@ -78,15 +78,15 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>ua.pp.msk.project1.lib</groupId>
+            <groupId>ua.pp.msk.project1</groupId>
             <artifactId>RouteLibrary</artifactId>
-            <version>0.01</version>
+            <version>0.04</version>
             <type>jar</type>
         </dependency>
     </dependencies>
     <parent>
     	<groupId>ua.pp.msk.project1</groupId>
     	<artifactId>Project1</artifactId>
-    	<version>0.03</version>
+    	<version>0.04</version>
     </parent>
 </project>

@@ -88,8 +88,8 @@ public class User implements Serializable {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", 
-    joinColumns = {@JoinColumn(name = "login")},
-    inverseJoinColumns = {@JoinColumn(name = "role_name")})
+    joinColumns = {@JoinColumn(name = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
     
     @XmlTransient
