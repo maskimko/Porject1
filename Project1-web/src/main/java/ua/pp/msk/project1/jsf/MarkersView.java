@@ -35,8 +35,10 @@ public class MarkersView implements Serializable {
         simpleModel.addOverlay(new Marker(edemsHouse, "Edem's House"));
         
     }
-  
+   
     public MapModel getSimpleModel() {
         return simpleModel;
     }
+    
+   
 }

@@ -10,13 +10,27 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
         <ui:define name="title">
             <h:outputText value="Google Map testing"/>
         </ui:define>
+        <ui:define name="north">
+            <p:button outcome="/faces/logout.xhtml" icon="ui-icon-power" />
+        </ui:define>
         <ui:define name="left">
-        	
+            <h:panelGroup id="userSelector" rendered="#{users.admin}">
         	<p:selectOneListbox value="#{users.selected}">
         		<f:selectItems value="#{users.allUsers}" var="current" itemLabel="#{current.firstName} #{current.surName}" itemValue="#{current}"/>
         	</p:selectOneListbox>
         	<p:commandButton value="Submit" update="testText"/>
-        	
+            </h:panelGroup>
+            <h:panelGroup id="userDetails">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="#{bundle.ViewUserLabel_login}"/>
+                    <h:outputText value="#{users.selected.login}"/>
+                    <p:outputLabel value="#{bundle.ViewUserLabel_firstName}"/>
+                    <h:outputText value="#{users.selected.firstName}"/>
+                    <p:outputLabel value="#{bundle.ViewUserLabel_surName}"/>
+                    <h:outputText value="#{users.selected.surName}"/>
+                    
+                </p:panelGrid>
+            </h:panelGroup>
             
         </ui:define>
         <ui:define name="content">
