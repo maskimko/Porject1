@@ -78,9 +78,9 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>ua.pp.msk.project1</groupId>
+            <groupId>ua.pp.msk</groupId>
             <artifactId>RouteLibrary</artifactId>
-            <version>0.04</version>
+            <version>0.1</version>
             <type>jar</type>
         </dependency>
     </dependencies>
